@@ -6,7 +6,7 @@ import TextField from "@material-ui/core/TextField";
 import Paper from "@material-ui/core/Paper";
 import FormControlLabel from "@material-ui/core/FormControlLabel";
 import Checkbox from "@material-ui/core/Checkbox";
-import Link from "@material-ui/core/Link";
+import LinkUI from "@material-ui/core/Link";
 import Grid from "@material-ui/core/Grid";
 import axios from "axios";
 import Box from "@material-ui/core/Box";
@@ -14,16 +14,15 @@ import LockOutlinedIcon from "@material-ui/icons/LockOutlined";
 import Typography from "@material-ui/core/Typography";
 import { makeStyles } from "@material-ui/core/styles";
 import Container from "@material-ui/core/Container";
-import { Route, Redirect } from "react-router-dom";
-import Login from "./login";
+import { Route, Redirect, Link } from "react-router-dom";
 
 function Copyright() {
   return (
     <Typography variant="body2" color="textSecondary" align="center">
       {"Copyright © "}
-      <Link color="inherit" href="https://material-ui.com/">
+      <LinkUI color="inherit" href="https://material-ui.com/">
         Your Website
-      </Link>{" "}
+      </LinkUI>{" "}
       {new Date().getFullYear()}
       {"."}
     </Typography>
@@ -73,7 +72,7 @@ export default function SignUp() {
 
   function handleClick(event) {
     console.log("hello");
-    var apiBaseUrl = "http://localhost:9000/user";
+    var apiBaseUrl = "http://localhost:9000/user/";
     console.log(
       "values",
       { first_name },
@@ -90,12 +89,12 @@ export default function SignUp() {
     };
 
     axios
-      .post(apiBaseUrl + "/", payload)
+      .post(apiBaseUrl, payload)
       .then(function (response) {
         console.log(response);
         if (response.status === 200) {
           alert("Registered successfully");
-          return <Redirect to="/Login" />;
+          return <redirect from="/signup" to="/login" />;
         }
       })
       .catch(function (error) {
@@ -173,15 +172,11 @@ export default function SignUp() {
             </Button>
             <Grid container>
               <Grid item xs>
-                <Link href="#" variant="body2">
-                  Forgot password?
-                </Link>
+                <Link to="/">Forgot password?</Link>
               </Grid>
               <Grid container>
                 <Grid item>
-                  <Link to="/Login" href="#" variant="body2">
-                    Already have an account? Sign in
-                  </Link>
+                  <Link to="/login">Already have an account? Sign in</Link>
                 </Grid>
               </Grid>
             </Grid>
