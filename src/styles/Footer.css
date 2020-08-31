@@ -1,0 +1,46 @@
+hr {
+	border: 1px solid white;
+}
+
+.Footer {
+	padding: 20px;
+	color: #b7bac3;
+	background-color: #171f30;
+}
+
+.Footer h3 {
+	color: white;
+}
+
+.Footer__top,
+.Footer__middle {
+	padding-bottom: 50px;
+	padding-top: 50px;
+}
+
+.Footer__bottom {
+	padding: 50px;
+
+	display: flex;
+	justify-content: space-between;
+}
+
+.Footer__bottom__dunzo * {
+	margin-bottom: 10px;
+}
+
+.Footer__bottom__dunzo h2,
+.Footer__bottom__service h2,
+.Footer__bottom__getin h2 {
+	margin: 0px;
+	margin-bottom: 10px;
+	color: white;
+}
+
+.Footer__bottom__service * {
+	margin-bottom: 10px;
+}
+
+.Footer__bottom__getin * {
+	margin-bottom: 10px;
+}

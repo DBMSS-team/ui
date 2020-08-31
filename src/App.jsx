@@ -8,6 +8,7 @@ import { UserAuthContext } from "./contexts/UserAuthenticationContext";
 import Order from "./components/Order";
 import Login from "./components/login";
 import SignUp from "./components/signup";
+import Footer from './components/Footer';
 
 function App() {
 	const [loggedIn, setLoggedIn] = useState(false);
@@ -16,6 +17,16 @@ function App() {
 		<div className="App">
 			<UserAuthContext.Provider value={{ loggedIn, setLoggedIn }}>
 				<Switch>
+					<Route
+						path="/footer"
+						render={(props) => (
+							<UserAuthContext.Provider
+								value={{ loggedIn, setLoggedIn }}
+							>
+								<Footer {...props} />
+							</UserAuthContext.Provider>
+						)}
+					/>
 					<Route
 						path="/login"
 						render={(props) => (
