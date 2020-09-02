@@ -66,7 +66,7 @@ class LocAutoComp extends Component {
     return (
       <div className = "LocAutoComp">
         <Script
-          url="https://maps.googleapis.com/maps/api/js?key=AIzaSyABMg00NPrQ6Pyaob0dJebAK-UqwCgQy-I&libraries=places"
+          url="https://maps.googleapis.com/maps/api/js?key=&libraries=places"
           onLoad={this.handleScriptLoad}
         />
         <div className = "Search__bar">
