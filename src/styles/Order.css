@@ -1,0 +1,28 @@
+.Order__home {
+    display: flex;
+    margin: 0 auto;
+    width: 80%;
+    height: 50%;
+    justify-content: center;
+    border: 1px solid black;
+}
+
+.Order__categories {
+    display: flex;
+    justify-content: space-around;
+    flex-direction: column;
+    border-right: 2px solid grey;
+    padding-right: 15px;
+    align-items: flex-end;
+    width: 30%;
+}
+
+.Order__category {
+    padding: 10px 0px;
+}
+
+.Order__items {
+    width: 70%;
+    border-left: 2px solid grey;
+    padding-left: 15px;
+}

@@ -9,8 +9,9 @@
     justify-content: center;
 }
 
-.Search__box {
+.MuiPaper-rounded {
     width: 80%;
+    border-radius: 10px;
 }
 
 .Search__button {
