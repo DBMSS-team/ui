@@ -7,7 +7,9 @@ import SearchBar from 'material-ui-search-bar';
 // Import React Scrit Libraray to load Google object
 import Script from 'react-load-script';
 
-class Search extends Component {
+import '../styles/LocAutoComp.css';
+
+class LocAutoComp extends Component {
   // Define Constructor
   constructor(props) {
     super(props);
@@ -62,20 +64,21 @@ class Search extends Component {
 
   render() {
     return (
-      <div>
+      <div className = "LocAutoComp">
         <Script
-          url="https://maps.googleapis.com/maps/api/js?key=AIzaSyBytV1ivXfD_04sWdEPdzsOue5xngX_Q2c&libraries=places"
+          url="https://maps.googleapis.com/maps/api/js?key=AIzaSyABMg00NPrQ6Pyaob0dJebAK-UqwCgQy-I&libraries=places"
           onLoad={this.handleScriptLoad}
         />
-        <SearchBar id="autocomplete" placeholder="" hintText="Search City" value={this.state.query}
-          style={{
-            margin: '0 auto',
-            maxWidth: 800,
-          }}
-        />
+        <div className = "Search__bar">
+    <SearchBar className = "Search__box" id="autocomplete" placeholder="Search for a location" hintText="Search City" value={this.state.query} 
+          />
+          <button className = "Search__button">
+            Proceed
+          </button>
+        </div>
       </div>
     );
   }
 }
 
-export default Search;
+export default LocAutoComp;

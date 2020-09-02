@@ -9,8 +9,7 @@ import Order from "./components/Order";
 import Login from "./components/login";
 import SignUp from "./components/signup";
 import Footer from './components/Footer';
-import Home from "./components/Home";
-import Search from "./components/Search";
+import LocAutoComp from "./components/LocAutoComp";
 
 function App() {
 	const [loggedIn, setLoggedIn] = useState(false);
@@ -50,12 +49,9 @@ function App() {
 							</UserAuthContext.Provider>
 						)}
 					/>
+					<Route path="/LocAutoComp" component={LocAutoComp} />
 				</Switch>
 			</UserAuthContext.Provider>
-			<Switch>
-				<Route path="/home" component={Home} />
-				<Route path="/maps" component={Search} />
-			</Switch>
 		</div>
 	);
 }
