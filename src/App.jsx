@@ -9,6 +9,8 @@ import Order from "./components/Order";
 import Login from "./components/login";
 import SignUp from "./components/signup";
 import Footer from './components/Footer';
+import Home from "./components/Home";
+import Search from "./components/Search";
 
 function App() {
 	const [loggedIn, setLoggedIn] = useState(false);
@@ -50,6 +52,10 @@ function App() {
 					/>
 				</Switch>
 			</UserAuthContext.Provider>
+			<Switch>
+				<Route path="/home" component={Home} />
+				<Route path="/maps" component={Search} />
+			</Switch>
 		</div>
 	);
 }
