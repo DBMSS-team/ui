@@ -1,3 +1,3 @@
 export const config = {
-	SERVER_URL: "http://localhost:5008",
+	SERVER_URL: "http://localhost:5001",
 };

@@ -1,0 +1,26 @@
+.LocAutoComp {
+    text-align: center;
+}
+
+.Search__bar {
+    padding: 10px;
+    background-color: #bdeaef;
+    display: flex;  
+    justify-content: center;
+}
+
+.MuiPaper-rounded {
+    width: 80%;
+    border-radius: 10px;
+}
+
+.Search__button {
+    color: white;
+    background-color:#04d69c;
+    font-weight: 600;
+    font-size: 18px;
+    margin-left: 10px;
+    border-radius: 8px;
+    border: none;
+    padding: 10px 30px;    
+}
