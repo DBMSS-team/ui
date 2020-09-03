@@ -75,28 +75,22 @@ export default function LocAutoComp({
 			});
 	}
 
-	return ( <
-		div className = "LocAutoComp" >
-		<
-		Script url = "https://maps.googleapis.com/maps/api/js?key=&libraries=places"
-		onLoad = {
-			handleScriptLoad
-		}
-		/> <
-		div className = "Search__bar" >
-		<
-		SearchBar className = "Search__box"
+	return ( 
+		<div className = "LocAutoComp">
+		<Script url = "https://maps.googleapis.com/maps/api/js?key=&libraries=places" onLoad = {handleScriptLoad}/> 
+		<div className = "Search__bar" >
+		<SearchBar className = "Search__box"
 		id = "autocomplete"
 		placeholder = "Search for a location"
 		hintText = "Search City"
 		value = {
 			state.query
 		}
-		/> <
-		button className = "Search__button" >
-		Proceed <
-		/button> <
-		/div> <
-		/div>
+		/> 
+		<button className = "Search__button" >
+		Proceed 
+		</button> 
+		</div> 
+		</div>
 	);
 }
