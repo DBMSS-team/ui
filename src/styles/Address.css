@@ -1,0 +1,50 @@
+.Address__content * {
+    margin: 0px;
+    padding: 0px;
+}
+
+.Address__content {
+	display: flex;
+    padding: 16px;
+    max-width: 360px;
+	border: 1px solid #e7e8eb;
+	border-radius: 2px;
+    margin: 20px;
+    justify-content: space-between;
+}
+
+.Address__content svg {
+	width: 14px;
+	height: 14px;
+	fill: #888d9d;
+}
+.Address__edit svg {
+	fill: #04d290;
+}
+
+.Address__info {
+	display: flex;
+	margin: 0px 0px 0px 8px;
+}
+
+.Address__type {
+	margin-bottom: 4px;
+    color: #0f1938;
+    font-weight: 600;
+    letter-spacing: normal;
+    font-size: 14px;
+}
+
+.Address__text {
+	font-size: 12px;
+	color: #0f1938b3;
+}
+
+.Address__controls {
+	margin-left: 24px;
+	display: flex;
+}
+
+.Address__delete {
+	margin-left: 12px;
+}
