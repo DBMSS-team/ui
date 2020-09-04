@@ -6,7 +6,7 @@ import IconButton from "@material-ui/core/IconButton";
 import Button from "@material-ui/core/Button";
 
 export default function Cart() {
-  const [count, setCount] = useState(0);
+  const [count, setCount] = useState([0,0]);
   const cartItems = [
     {
       name: "Chicken Shawarma",
@@ -44,18 +44,21 @@ export default function Cart() {
                 <IconButton
                   aria-label="delete"
                   color="white"
-                  onClick={(item) => {
-                    setCount(item.quantity - 1);
+                  class="removebutton"
+                  onClick={() => {
+                    setCount([count[0] - 1, 0]);
                   }}
                 >
                   <RemoveIcon />
                 </IconButton>
-                {item.quantity}
+                {count[0]}
                 <IconButton
                   aria-label="add"
                   color="primary"
                   class="addbutton"
-                  onClick={(item) => setCount(item.quantity + 1)}
+                  onClick={() => {
+                    setCount([count[0] + 1, 0]);
+                  }}
                 >
                   <AddIcon />
                 </IconButton>
