@@ -9,6 +9,8 @@ import Order from "./components/Order";
 import Login from "./components/login";
 import SignUp from "./components/signup";
 import Footer from "./components/Footer";
+import Header from "./components/Header";
+import Cart from "./components/Cart";
 import LocAutoComp from "./components/LocAutoComp";
 
 function App() {
@@ -45,6 +47,8 @@ function App() {
           />
           <Route path="/LocAutoComp" component={LocAutoComp} />
           <Route path="/Order" component={Order} />
+          <Route path="/Header" component={Header} />
+          <Route path="/Cart" component={Cart} />
         </Switch>
       </UserAuthContext.Provider>
     </div>
