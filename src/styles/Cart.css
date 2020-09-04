@@ -3,7 +3,6 @@
 }
 html,
 body {
-  background-color: #171f30;
   font-family: "Roboto", sans-serif;
 }
 .cart {
@@ -94,6 +93,14 @@ hr {
   color: rgb(0, 210, 144);
   outline: none;
   size: 10px;
+  cursor: pointer;
+}
+.removebutton {
+  background: none;
+  border: none;
+  outline: none;
+  size: 10px;
+  cursor: pointer;
 }
 img {
   height: 15px;
