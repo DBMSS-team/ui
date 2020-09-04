@@ -1,0 +1,47 @@
+.storecard {
+    display: flex;
+    color: #777e8e;
+    justify-content: center;
+    margin: 50px;
+    height: 150px;
+}
+
+.storecard__left {
+    margin-right: 50px;
+}
+
+.storecard__right {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    margin-bottom: 10px;
+}
+
+.restaurant__name {
+    color: black;
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.restaurant__type {
+
+}
+
+.restaurant__details {
+    display: flex;
+    justify-content: space-between;
+    flex-direction: row;
+    margin-bottom:0px;
+}
+
+.restaurant__distance {
+    margin-left: 0px;
+}
+
+.restaurant__location {
+
+}
+
+.restaurant__time {
+
+}
