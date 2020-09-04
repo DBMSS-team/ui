@@ -1,0 +1,41 @@
+.home-title {
+  font-size: 30px;
+  font-weight: bold;
+  justify-content: left;
+  margin: 30px;
+  text-align: left;
+  letter-spacing: normal;
+  font-family: Gilroy, sans-serif;
+}
+.home-card-detail {
+  font-size: 20px;
+}
+.details {
+  height: 100px;
+  padding: 0px;
+}
+.cardGrid {
+  margin: 30px;
+}
+hr {
+  border: 5px solid black;
+  width: 60px;
+  border-radius: 5px;
+  margin-left: 30px;
+  background: black;
+}
+.content {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+.card-image {
+  width: 40%;
+}
+
+.MuiGrid-spacing-xs-4 > .MuiGrid-item {
+  padding: 0px;
+}
+
+.card-image img {
+}
