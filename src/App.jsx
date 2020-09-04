@@ -11,6 +11,7 @@ import SignUp from "./components/signup";
 import Footer from "./components/Footer";
 import Header from "./components/Header";
 import Cart from "./components/Cart";
+import Home from "./components/Home";
 import LocAutoComp from "./components/LocAutoComp";
 
 function App() {
@@ -49,6 +50,7 @@ function App() {
           <Route path="/Order" component={Order} />
           <Route path="/Header" component={Header} />
           <Route path="/Cart" component={Cart} />
+          <Route path="/Home" component={Home} />
         </Switch>
       </UserAuthContext.Provider>
     </div>
