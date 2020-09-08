@@ -11,7 +11,7 @@ import SignUp from "./components/signup";
 import Footer from "./components/Footer";
 import Header from "./components/Header";
 import Cart from "./components/Cart";
-import Home from "./components/Home";
+import Home from "./pages/Home";
 import LocAutoComp from "./components/LocAutoComp";
 
 function App() {

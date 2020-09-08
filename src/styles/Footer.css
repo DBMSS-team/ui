@@ -3,9 +3,16 @@ hr {
 }
 
 .Footer {
+	display: flex;
+	justify-content: center;
 	padding: 20px;
 	color: #b7bac3;
 	background-color: #171f30;
+}
+
+.Footer__content {
+	width: 100%;
+	max-width: 1024px;
 }
 
 .Footer h3 {

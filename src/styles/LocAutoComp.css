@@ -1,10 +1,12 @@
 .LocAutoComp {
     text-align: center;
+    width: 100%;
+    max-width: 760px;
+
 }
 
 .Search__bar {
     padding: 10px;
-    background-color: #bdeaef;
     display: flex;  
     justify-content: center;
 }

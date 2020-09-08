@@ -22,14 +22,22 @@ export default function Header() {
   if (loginClick === true) return <Redirect to="/login" />;
 
   return (
-    <div class="header">
-      <h1 class="title">Benzo!</h1>
-      <IconButton class="header-cart" size="lg" onClick={handleCart}>
-        <ShoppingCartIcon />
-      </IconButton>
-      <button class="header-button" onClick={handleSignIn}>
-        Sign In
-      </button>
-    </div>
+		<div className="header">
+			<div className="header__content">
+				<h1 className="title">Benzo!</h1>
+				<div className="header__controls">
+					<IconButton
+						className="header-cart"
+						size="lg"
+						onClick={handleCart}
+					>
+						<ShoppingCartIcon />
+					</IconButton>
+					<button className="header-button" onClick={handleSignIn}>
+						Sign In
+					</button>
+				</div>
+			</div>
+		</div>
   );
 }
