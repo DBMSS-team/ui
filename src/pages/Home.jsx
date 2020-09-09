@@ -53,9 +53,9 @@ export default function Album() {
 			</div>
 			<main>
 				<Container className="card__grid">
-					<div class="home-title">What do you want?</div>
+					<div className="home-title">What do you want?</div>
 					<div>
-						<hr></hr>
+						<hr />
 					</div>
 					{/* End hero unit */}
 					<Link to="/Store" style={{ textDecoration: "none" }}>
@@ -65,8 +65,8 @@ export default function Album() {
 									<Card className="root">
 										<div className="details">
 											<CardContent className="content">
-												<div class="card-image">
-													<img src="/images/delivery.svg"></img>
+												<div className="card-image">
+													<img src="/images/delivery.svg" />
 												</div>
 												<Typography
 													component="h5"
@@ -76,7 +76,7 @@ export default function Album() {
 													{card}
 												</Typography>
 											</CardContent>
-											<div className="controls"></div>
+											<div className="controls" />
 										</div>
 										<CardMedia
 											className="cover"

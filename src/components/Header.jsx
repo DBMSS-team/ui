@@ -3,7 +3,7 @@ import "../styles/Header.css";
 import ShoppingCartIcon from "@material-ui/icons/ShoppingCart";
 import IconButton from "@material-ui/core/IconButton";
 import { Redirect, Link } from "react-router-dom";
-//import { Button } from "@material-ui/core";
+// import { Button } from "@material-ui/core";
 
 export default function Header() {
   const [cartClick, setCartClick] = useState(false);
@@ -22,19 +22,19 @@ export default function Header() {
   if (loginClick === true) return <Redirect to="/login" />;
 
   return (
-		<div className="header">
-			<div className="header__content">
-				<h1 className="title">Benzo!</h1>
-				<div className="header__controls">
-					<IconButton
-						className="header-cart"
-						size="lg"
-						onClick={handleCart}
+  <div className="header">
+  <div className="header__content">
+  <h1 className="title">Benzo!</h1>
+  <div className="header__controls">
+  <IconButton
+  className="header-cart"
+  size="lg"
+  onClick={handleCart}
 					>
-						<ShoppingCartIcon />
+  <ShoppingCartIcon />
 					</IconButton>
-					<button className="header-button" onClick={handleSignIn}>
-						Sign In
+  <button className="header-button" onClick={handleSignIn}>
+  Sign In
 					</button>
 				</div>
 			</div>
