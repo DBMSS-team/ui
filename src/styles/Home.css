@@ -49,24 +49,6 @@
 	width: 40%;
 }
 
-.MuiGrid-spacing-xs-4 > .MuiGrid-item {
-	padding: 0px;
-}
-
-@media (min-width: 1020px) {
-	.card__grid {
-		max-width: 1024px;
-	}
-}
-
-@media (min-width: 1280px) {
-}
-
-/* .card__main {
-	width: 1024px;
-	margin: 30px;
-} */
-
 .card__main {
 	display: flex;
 	justify-content: center;
@@ -79,7 +61,8 @@
 	max-width: 1024px;
 }
 
-@media (min-width: 600px) > .MuiContainer-root {
-	padding-left: 24px !important;
-	padding-right: 24px;
+@media (min-width: 600px) {
+	.MuiContainer-root {
+		padding: 0px !important;
+	}
 }

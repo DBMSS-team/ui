@@ -24,7 +24,7 @@ export default function Header() {
   return (
   <div className="header">
   <div className="header__content">
-  <h1 className="title">Benzo!</h1>
+  <h1 className="title">BENZO!</h1>
   <div className="header__controls">
   <IconButton
   className="header-cart"
