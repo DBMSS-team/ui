@@ -1,0 +1,16 @@
+a {
+	text-decoration: none;
+	color: #92959e;
+}
+
+.Navbar {
+	color: #92959e;
+	padding: 5px 10px;
+	display: flex;
+	justify-content: center;
+}
+
+.Navbar__content {
+	width: 100%;
+	max-width: 1024px;
+}

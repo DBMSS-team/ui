@@ -20,6 +20,8 @@ import Login from "../components/login";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
 import LocAutoComp from "../components/LocAutoComp";
+import LocationInfo from "../components/LocationInfo";
+import Navbar from "../components/Navbar";
 
 const cards = [
 	"Groceries",
@@ -36,21 +38,37 @@ function handleClick() {
 	return <Login />;
 }
 
-export default function Album() {
+export default function Home(props) {
+
+	const location = props.match.params.location;
+	console.log(location)
+
+	const navlist = [{ name: "home" }, { name: "delhi" }];
+
+	const info =
+		"Why step out when you can get everything delivered home with the tap of a button? New Delhi's favourite delivery app gets you Food, Grocery, Medicine, Pet Supplies, Fruits & Vegetables, Meat & Fish, Health & Wellness, Gifts and Send Packages from one end of the city to the other. From your local kirana stores to your favourite brands, grocery shopping to your forgotten charger, we are always on the move for you. Why worry about your chores, when you can get it all Dun!";
+
 	return (
 		<div className="home__page">
 			<Header />
-
-			<div className="location__div">
-				<div className="home__header_text">
-					<h1>Many needs, one app</h1>
-					<h3>
-						Need groceries, food or pet supplies delivered? Get it
-						Dun!
-					</h3>
+			{location ? (
+				<>
+					<Navbar navlist={navlist} />
+					<LocationInfo location={location} info={info} />
+				</>
+			) : (
+				<div className="location__div">
+					<div className="home__header_text">
+						<h1>Many needs, one app</h1>
+						<h3>
+							Need groceries, food or pet supplies delivered? Get
+							it Dun!
+						</h3>
+					</div>
+					<LocAutoComp />
 				</div>
-				<LocAutoComp />
-			</div>
+			)}
+
 			<main>
 				<Container className="card__grid">
 					<div className="home-title">What do you want?</div>

@@ -1,0 +1,23 @@
+.LocationInfo__name {
+	color: #6c7aff;
+}
+
+.LocationInfo {
+	padding: 20px;
+	background-color: #f0f2ff;
+	display: flex;
+	align-items: center;
+	flex-direction: column;
+}
+
+.LocationInfo__content {
+	width: 100%;
+	max-width: 1024px;
+}
+
+p {
+	font-weight: 500;
+	font-size: 18px;
+	line-height: 1.33;
+	margin-bottom: 50px;
+}

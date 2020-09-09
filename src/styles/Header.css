@@ -1,52 +1,51 @@
 .header {
-  position: fixed;
-  display: flex;
-  justify-content: center;
-  font-family: Gilroy, sans-serif;
-  background-color: #171f30;
-  font-size: 16px;
-  height: 75px;
-  width: 100%;
+	display: flex;
+	justify-content: center;
+	font-family: Gilroy, sans-serif;
+	background-color: #171f30;
+	font-size: 16px;
+	height: 75px;
+	width: 100%;
 }
 
 .header__content {
-  display: flex;
-  justify-content: space-between;
-  width: 100%;
-  max-width: 1024px;
+	display: flex;
+	justify-content: space-between;
+	width: 100%;
+	max-width: 1024px;
 }
 
 .header__controls {
-  display: flex;
-  align-items: center;
+	display: flex;
+	align-items: center;
 }
 
 .header__controls svg {
-  fill: white;
+	fill: white;
 }
 
 .title {
-  width: 70%;
-  color: aquamarine;
-  font-style: italic;
+	width: 70%;
+	color: aquamarine;
+	font-style: italic;
 }
 .header-cart {
-  color: white;
-  align-items: center;
-  border-color: #171f30;
-  background-color: #171f30;
-  padding-right: 25px;
-  border: none;
-  cursor: pointer;
-  outline: none;
+	color: white;
+	align-items: center;
+	border-color: #171f30;
+	background-color: #171f30;
+	padding-right: 25px;
+	border: none;
+	cursor: pointer;
+	outline: none;
 }
 .header-button {
-  align-items: center;
-  border: none;
-  background: #171f30;
-  color: white;
-  font-size: 16px;
-  font-family: Gilroy, sans-serif;
-  outline: none;
-  cursor: pointer;
+	align-items: center;
+	border: none;
+	background: #171f30;
+	color: white;
+	font-size: 16px;
+	font-family: Gilroy, sans-serif;
+	outline: none;
+	cursor: pointer;
 }

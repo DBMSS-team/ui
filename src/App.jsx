@@ -52,11 +52,12 @@ function App() {
 							</UserAuthContext.Provider>
 						)}
 					/>
+					<Route path="/" exact component={Home} />
 					<Route path="/LocAutoComp" component={LocAutoComp} />
 					<Route path="/Order" component={Order} />
 					<Route path="/Header" component={Header} />
 					<Route path="/Cart" component={Cart} />
-					<Route path="/Home" component={Home} />
+					<Route path="/:location" component={Home} />
 				</Switch>
 			</UserAuthContext.Provider>
 		</div>
