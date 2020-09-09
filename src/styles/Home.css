@@ -1,62 +1,85 @@
-
 .home-title {
-  font-size: 30px;
-  font-weight: bold;
-  justify-content: left;
-  text-align: left;
-  letter-spacing: normal;
-  font-family: Gilroy, sans-serif;
+	font-size: 30px;
+	font-weight: bold;
+	justify-content: left;
+	text-align: left;
+	letter-spacing: normal;
+	margin-bottom: 50px;
+	font-family: Gilroy, sans-serif;
 }
 
-
 .home__header_text {
-  text-align: center;
+	text-align: center;
 }
 
 .location__div {
-  display: flex;
-  flex-direction: column;
-  height: 40vh;
-  background-image: url(https://ik.imagekit.io/dunzo/web-assets/images/home_banner-8f8456746e130b7046d65f5548c89686.png), linear-gradient(-134deg, rgb(197, 226, 248) 0%, rgb(174, 251, 223) 100%);
-  background-size: contain;
-  background-repeat: no-repeat;
-  background-position: center center;
-  justify-content: center;
-  align-items: center;
+	display: flex;
+	flex-direction: column;
+	height: 40vh;
+	background-image: url(https://ik.imagekit.io/dunzo/web-assets/images/home_banner-8f8456746e130b7046d65f5548c89686.png),
+		linear-gradient(-134deg, rgb(197, 226, 248) 0%, rgb(174, 251, 223) 100%);
+	background-size: contain;
+	background-repeat: no-repeat;
+	background-position: center center;
+	justify-content: center;
+	align-items: center;
 }
 
 .home-card-detail {
-  font-size: 20px;
+	font-size: 20px;
+	margin-top: 20px;
 }
 .details {
-  height: 100px;
-  padding: 0px;
+	height: 100px;
+	padding: 0px;
 }
 
 .card__grid {
-  margin: 30px;
-  max-width: 1024px;
-  padding:0px;
+	margin: 30px;
+	max-width: 1024px;
+	padding: 0px;
 }
 
 .content {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
+	display: flex;
+	flex-direction: row;
+	align-items: center;
 }
 .card-image {
-  width: 40%;
+	width: 40%;
 }
 
 .MuiGrid-spacing-xs-4 > .MuiGrid-item {
-  padding: 0px;
-}
-
-.card-image img {
+	padding: 0px;
 }
 
 @media (min-width: 1020px) {
-  .card__grid {
-  max-width: 1024px;
+	.card__grid {
+		max-width: 1024px;
+	}
 }
+
+@media (min-width: 1280px) {
+}
+
+/* .card__main {
+	width: 1024px;
+	margin: 30px;
+} */
+
+.card__main {
+	display: flex;
+	justify-content: center;
+	width: 100%;
+}
+.card__sub__main {
+	display: flex;
+	justify-content: space-between;
+	width: 100%;
+	max-width: 1024px;
+}
+
+@media (min-width: 600px) > .MuiContainer-root {
+	padding-left: 24px !important;
+	padding-right: 24px;
 }
