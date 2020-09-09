@@ -1,9 +1,6 @@
 {
-    "extends": [
-        "react-app",
-        "plugin:prettier/recommended"
-    ],
-    "rules": {
-        "no-console": "warn"
-    }
+	"extends": ["react-app", "plugin:prettier/recommended"],
+	"rules": {
+		"no-console": "warn"
+	}
 }

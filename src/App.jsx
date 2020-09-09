@@ -15,46 +15,52 @@ import Home from "./pages/Home";
 import LocAutoComp from "./components/LocAutoComp";
 
 function App() {
-  const [loggedIn, setLoggedIn] = useState(false);
+	const [loggedIn, setLoggedIn] = useState(false);
 
-  return (
-    <div className="App">
-      <UserAuthContext.Provider value={{ loggedIn, setLoggedIn }}>
-        <Switch>
-          <Route
-            path="/footer"
-            render={(props) => (
-              <UserAuthContext.Provider value={{ loggedIn, setLoggedIn }}>
-                <Footer {...props} />
-              </UserAuthContext.Provider>
-            )}
-          />
-          <Route
-            path="/login"
-            render={(props) => (
-              <UserAuthContext.Provider value={{ loggedIn, setLoggedIn }}>
-                <Login {...props} />
-              </UserAuthContext.Provider>
-            )}
-          />
-          <Route path="/signup" component={SignUp} />
-          <Route
-            path="/order"
-            render={(props) => (
-              <UserAuthContext.Provider value={{ loggedIn, setLoggedIn }}>
-                <Order {...props} />
-              </UserAuthContext.Provider>
-            )}
-          />
-          <Route path="/LocAutoComp" component={LocAutoComp} />
-          <Route path="/Order" component={Order} />
-          <Route path="/Header" component={Header} />
-          <Route path="/Cart" component={Cart} />
-          <Route path="/Home" component={Home} />
-        </Switch>
-      </UserAuthContext.Provider>
-    </div>
-  );
+	return (
+		<div className="App">
+			<UserAuthContext.Provider value={{ loggedIn, setLoggedIn }}>
+				<Switch>
+					<Route
+						path="/footer"
+						render={(props) => (
+							<UserAuthContext.Provider
+								value={{ loggedIn, setLoggedIn }}
+							>
+								<Footer {...props} />
+							</UserAuthContext.Provider>
+						)}
+					/>
+					<Route
+						path="/login"
+						render={(props) => (
+							<UserAuthContext.Provider
+								value={{ loggedIn, setLoggedIn }}
+							>
+								<Login {...props} />
+							</UserAuthContext.Provider>
+						)}
+					/>
+					<Route path="/signup" component={SignUp} />
+					<Route
+						path="/order"
+						render={(props) => (
+							<UserAuthContext.Provider
+								value={{ loggedIn, setLoggedIn }}
+							>
+								<Order {...props} />
+							</UserAuthContext.Provider>
+						)}
+					/>
+					<Route path="/LocAutoComp" component={LocAutoComp} />
+					<Route path="/Order" component={Order} />
+					<Route path="/Header" component={Header} />
+					<Route path="/Cart" component={Cart} />
+					<Route path="/Home" component={Home} />
+				</Switch>
+			</UserAuthContext.Provider>
+		</div>
+	);
 }
 
 export default App;
