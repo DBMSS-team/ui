@@ -22,22 +22,22 @@ import Footer from "../components/Footer";
 import LocAutoComp from "../components/LocAutoComp";
 
 const cards = [
-  "Groceries",
-  "Food",
-  "Medicines",
-  "Pet Supplies",
-  "Send Packages",
-  "Meat",
-  "Health",
-  "Bike Pool",
+	"Groceries",
+	"Food",
+	"Medicines",
+	"Pet Supplies",
+	"Send Packages",
+	"Meat",
+	"Health",
+	"Bike Pool",
 ];
 
 function handleClick() {
-  return <Login />;
+	return <Login />;
 }
 
 export default function Album() {
-  return (
+	return (
 		<div className="home__page">
 			<Header />
 
@@ -92,5 +92,5 @@ export default function Album() {
 			</main>
 			<Footer />
 		</div>
-  );
+	);
 }
