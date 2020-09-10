@@ -6,7 +6,6 @@ import CardMedia from "@material-ui/core/CardMedia";
 import Grid from "@material-ui/core/Grid";
 import Typography from "@material-ui/core/Typography";
 import Container from "@material-ui/core/Container";
-import { Link } from "react-router-dom";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
 import LocAutoComp from "../components/LocAutoComp";
@@ -60,39 +59,47 @@ export default function Home(props) {
 							<hr></hr>
 						</div>
 						{/* End hero unit */}
-						<Link to="/Store" style={{ textDecoration: "none" }}>
-							<Grid container spacing={4}>
-								{cards.map((card) => (
-									<Grid item key={card} xs={12} sm={6} md={4}>
-										<Card className="root">
-											<div className="details">
-												<CardContent className="content">
-													<div class="card-image">
-														<img
-															alt="delivery"
-															src="/images/delivery.svg"
-														></img>
-													</div>
-													<Typography
-														component="h5"
-														variant="h5"
-														class="home-card-detail"
-													>
-														{card}
-													</Typography>
-												</CardContent>
-												<div className="controls"></div>
-											</div>
-											<CardMedia
-												className="cover"
-												image="https://source.unsplash.com/random"
-												title="{code}"
-											/>
-										</Card>
-									</Grid>
-								))}
-							</Grid>
-						</Link>
+
+						<Grid container spacing={4}>
+							{cards.map((card) => (
+								<Grid
+									item
+									key={card}
+									xs={12}
+									sm={6}
+									md={4}
+									onClick={() => {
+										props.history.push(`/Stores/${card}`);
+									}}
+								>
+									<Card className="root">
+										<div className="details">
+											<CardContent className="content">
+												<div class="card-image">
+													<img
+														alt="delivery"
+														src="/images/delivery.svg"
+													></img>
+												</div>
+												<Typography
+													component="h5"
+													variant="h5"
+													class="home-card-detail"
+												>
+													{card}
+												</Typography>
+											</CardContent>
+											<div className="controls"></div>
+										</div>
+										<CardMedia
+											className="cover"
+											image="https://source.unsplash.com/random"
+											title="{code}"
+										/>
+									</Card>
+								</Grid>
+							))}
+						</Grid>
 					</Container>
 				</div>
 			</main>
