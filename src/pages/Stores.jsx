@@ -60,16 +60,32 @@ export default function Store({ match }) {
 			<Header />
 			<Navbar navlist={navlist} />
 			<div className="Stores__content">
-				<div className="Stores__list">
-					{stores.map((store) => (
-						<StoreCard
-							name={store.name}
-							type={store.type}
-							distance={store.distance}
-							time={store.time}
-							location={store.location}
-						/>
-					))}
+				<div className="Stores__content_body">
+					<div className="Stores__count">
+						<div className="Stores__count__left">
+							<img
+								alt="count"
+								src="/assets/images/empire.png"
+								width="150px"
+								height="100%"
+							/>
+						</div>
+						<div className="Stores__count__right">
+							<h2>Order from Restaurants</h2>
+							<span>192 Restaurants</span>
+						</div>
+					</div>
+					<div className="Stores__list">
+						{stores.map((store) => (
+							<StoreCard
+								name={store.name}
+								type={store.type}
+								distance={store.distance}
+								time={store.time}
+								location={store.location}
+							/>
+						))}
+					</div>
 				</div>
 			</div>
 			<Footer />

@@ -1,52 +1,61 @@
 .storecard {
-    display: flex;
-    color: #777e8e;
-    justify-content: center;
-    margin: 50px;
-    height: 150px;
+	display: flex;
+	color: #777e8e;
+	justify-content: center;
+	margin: 30px 0px;
+	border-radius: 10px;
+	padding: 15px;
+}
+
+.storecard:hover {
+	box-shadow: 0px 0px 10px rgb(219, 219, 219);
 }
 
 .storecard__left {
-    margin-right: 50px;
+	margin-right: 26px;
+	width: 125px;
+	height: 125px;
 }
 
 .storecard__left img {
-    height: 100%;
-    width: 150px;
+	height: 100%;
+	width: 150px;
 }
 
 .storecard__right {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    margin-bottom: 10px;
+	display: flex;
+	flex-direction: column;
+	justify-content: start;
+	margin-bottom: 10px;
+}
+
+.storecard__right * {
+	margin-bottom: 8px;
 }
 
 .restaurant__name {
-    color: black;
-    font-size: 20px;
-    font-weight: bold;
+	color: black;
+	font-size: 20px;
+	font-weight: bold;
 }
 
 .restaurant__type {
-
 }
 
 .restaurant__details {
-    display: flex;
-    justify-content: space-between;
-    flex-direction: row;
-    margin-bottom:0px;
+	display: flex;
+	justify-content: space-between;
+	flex-direction: row;
+	margin-bottom: 0px;
 }
 
 .restaurant__distance {
-    margin-left: 0px;
+	margin-left: 0px;
 }
 
 .restaurant__location {
-    margin-left: 25px;
+	margin-left: 25px;
 }
 
 .restaurant__time {
-
 }
