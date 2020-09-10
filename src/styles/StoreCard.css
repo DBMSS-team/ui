@@ -10,6 +10,11 @@
     margin-right: 50px;
 }
 
+.storecard__left img {
+    height: 100%;
+    width: 150px;
+}
+
 .storecard__right {
     display: flex;
     flex-direction: column;
@@ -39,7 +44,7 @@
 }
 
 .restaurant__location {
-
+    margin-left: 25px;
 }
 
 .restaurant__time {
