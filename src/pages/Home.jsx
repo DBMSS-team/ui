@@ -1,22 +1,12 @@
 import React from "react";
-import AppBar from "@material-ui/core/AppBar";
-import Button from "@material-ui/core/Button";
 import "../styles/Home.css";
 import Card from "@material-ui/core/Card";
-import CardActions from "@material-ui/core/CardActions";
-import SearchBar from "material-ui-search-bar";
 import CardContent from "@material-ui/core/CardContent";
 import CardMedia from "@material-ui/core/CardMedia";
-import CssBaseline from "@material-ui/core/CssBaseline";
 import Grid from "@material-ui/core/Grid";
-import Toolbar from "@material-ui/core/Toolbar";
 import Typography from "@material-ui/core/Typography";
-import Paper from "@material-ui/core/Paper";
-import { makeStyles } from "@material-ui/core/styles";
 import Container from "@material-ui/core/Container";
-import LinkUI from "@material-ui/core/Link";
-import { Route, Redirect, Link } from "react-router-dom";
-import Login from "../components/login";
+import { Link } from "react-router-dom";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
 import LocAutoComp from "../components/LocAutoComp";
@@ -34,14 +24,8 @@ const cards = [
 	"Bike Pool",
 ];
 
-function handleClick() {
-	return <Login />;
-}
-
 export default function Home(props) {
-
 	const location = props.match.params.location;
-	console.log(location)
 
 	const navlist = [{ name: "home" }, { name: "delhi" }];
 
@@ -66,8 +50,8 @@ export default function Home(props) {
 						</h3>
 					</div>
 					<LocAutoComp />
-				</div>)
-			}
+				</div>
+			)}
 			<main className="card__main">
 				<div className="card__sub__main">
 					<Container className="card__grid">
@@ -84,7 +68,10 @@ export default function Home(props) {
 											<div className="details">
 												<CardContent className="content">
 													<div class="card-image">
-														<img src="/images/delivery.svg"></img>
+														<img
+															alt="delivery"
+															src="/images/delivery.svg"
+														></img>
 													</div>
 													<Typography
 														component="h5"
