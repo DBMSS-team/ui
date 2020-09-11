@@ -26,7 +26,7 @@ const cards = [
 export default function Home(props) {
 	const location = props.match.params.location;
 
-	const navlist = [{ name: "home" }, { name: "delhi" }];
+	const navlist = [{ name: "Home" }, { name: location }];
 
 	const info =
 		"Why step out when you can get everything delivered home with the tap of a button? New Delhi's favourite delivery app gets you Food, Grocery, Medicine, Pet Supplies, Fruits & Vegetables, Meat & Fish, Health & Wellness, Gifts and Send Packages from one end of the city to the other. From your local kirana stores to your favourite brands, grocery shopping to your forgotten charger, we are always on the move for you. Why worry about your chores, when you can get it all Dun!";
@@ -48,7 +48,7 @@ export default function Home(props) {
 							it Dun!
 						</h3>
 					</div>
-					<LocAutoComp />
+					<LocAutoComp props = {props} />
 				</div>
 			)}
 			<main className="card__main">

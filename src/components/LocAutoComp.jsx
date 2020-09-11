@@ -5,11 +5,12 @@ import SearchBar from "material-ui-search-bar";
 import Script from "react-load-script";
 import "../styles/LocAutoComp.css";
 
-export default function LocAutoComp({ data }) {
+export default function LocAutoComp({ props }) {
 	const [state, setState] = useState({
 		city: "",
 		query: "",
 	});
+	const gmapsUrl = `https://maps.googleapis.com/maps/api/js?key=${process.env.REACT_APP_GMAPS_API_KEY}&libraries=places`;
 
 	function handleScriptLoad() {
 		// Declare Options For Autocomplete
@@ -38,8 +39,6 @@ export default function LocAutoComp({ data }) {
 		autocomplete.addListener("place_changed", () => {
 			// Extract City From Address Object
 			const addressObject = autocomplete.getPlace();
-			const la = addressObject.geometry.location.lat();
-			const lo = addressObject.geometry.location.lng();
 			const address = addressObject.address_components;
 
 			// Check if address is valid
@@ -50,13 +49,16 @@ export default function LocAutoComp({ data }) {
 					query: addressObject.formatted_address,
 				});
 			}
-			handleSubmit(la);
+			handleSubmit(addressObject);
+			
 		});
 	}
 
-	function handleSubmit(la) {
+	function handleSubmit(addressObject) {
 		var payload = {
-			location: la,
+			latitude: addressObject.geometry.location.lat(),
+			longitude: addressObject.geometry.location.lng(),
+			place: addressObject.address_components[0].long_name,
 		};
 		axios
 			.post(config.SERVER_URL + "/location", payload)
@@ -70,13 +72,13 @@ export default function LocAutoComp({ data }) {
 			})
 			.catch(function (error) {
 				console.log(error);
-			});
+			});		
 	}
 
 	return (
 		<div className="LocAutoComp">
 			<Script
-				url="https://maps.googleapis.com/maps/api/js?key=&libraries=places"
+				url={gmapsUrl}
 				onLoad={handleScriptLoad}
 			/>
 			<div className="Search__bar">
@@ -87,7 +89,14 @@ export default function LocAutoComp({ data }) {
 					hintText="Search City"
 					value={state.query}
 				/>
-				<button className="Search__button">Proceed</button>
+				<button
+					className="Search__button"
+					onClick={() => {
+						props.history.push(`/${state.city}`);
+					}}
+				>
+					Proceed
+				</button>
 			</div>
 		</div>
 	);
