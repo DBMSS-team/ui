@@ -6,7 +6,6 @@ import CardMedia from "@material-ui/core/CardMedia";
 import Grid from "@material-ui/core/Grid";
 import Typography from "@material-ui/core/Typography";
 import Container from "@material-ui/core/Container";
-import { Link } from "react-router-dom";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
 import LocAutoComp from "../components/LocAutoComp";
@@ -27,7 +26,7 @@ const cards = [
 export default function Home(props) {
 	const location = props.match.params.location;
 
-	const navlist = [{ name: "home" }, { name: "delhi" }];
+	const navlist = [{ name: "Home" }, { name: location }];
 
 	const info =
 		"Why step out when you can get everything delivered home with the tap of a button? New Delhi's favourite delivery app gets you Food, Grocery, Medicine, Pet Supplies, Fruits & Vegetables, Meat & Fish, Health & Wellness, Gifts and Send Packages from one end of the city to the other. From your local kirana stores to your favourite brands, grocery shopping to your forgotten charger, we are always on the move for you. Why worry about your chores, when you can get it all Dun!";
@@ -49,7 +48,7 @@ export default function Home(props) {
 							it Dun!
 						</h3>
 					</div>
-					<LocAutoComp />
+					<LocAutoComp props = {props} />
 				</div>
 			)}
 			<main className="card__main">
@@ -60,39 +59,47 @@ export default function Home(props) {
 							<hr></hr>
 						</div>
 						{/* End hero unit */}
-						<Link to="/Store" style={{ textDecoration: "none" }}>
-							<Grid container spacing={4}>
-								{cards.map((card) => (
-									<Grid item key={card} xs={12} sm={6} md={4}>
-										<Card className="root">
-											<div className="details">
-												<CardContent className="content">
-													<div class="card-image">
-														<img
-															alt="delivery"
-															src="/images/delivery.svg"
-														></img>
-													</div>
-													<Typography
-														component="h5"
-														variant="h5"
-														class="home-card-detail"
-													>
-														{card}
-													</Typography>
-												</CardContent>
-												<div className="controls"></div>
-											</div>
-											<CardMedia
-												className="cover"
-												image="https://source.unsplash.com/random"
-												title="{code}"
-											/>
-										</Card>
-									</Grid>
-								))}
-							</Grid>
-						</Link>
+
+						<Grid container spacing={4}>
+							{cards.map((card) => (
+								<Grid
+									item
+									key={card}
+									xs={12}
+									sm={6}
+									md={4}
+									onClick={() => {
+										props.history.push(`/Stores/${card}`);
+									}}
+								>
+									<Card className="root">
+										<div className="details">
+											<CardContent className="content">
+												<div class="card-image">
+													<img
+														alt="delivery"
+														src="/images/delivery.svg"
+													></img>
+												</div>
+												<Typography
+													component="h5"
+													variant="h5"
+													class="home-card-detail"
+												>
+													{card}
+												</Typography>
+											</CardContent>
+											<div className="controls"></div>
+										</div>
+										<CardMedia
+											className="cover"
+											image="https://source.unsplash.com/random"
+											title="{code}"
+										/>
+									</Card>
+								</Grid>
+							))}
+						</Grid>
 					</Container>
 				</div>
 			</main>

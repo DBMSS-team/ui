@@ -15,7 +15,6 @@
 .location__div {
 	display: flex;
 	flex-direction: column;
-	height: 40vh;
 	background-image: url(https://ik.imagekit.io/dunzo/web-assets/images/home_banner-8f8456746e130b7046d65f5548c89686.png),
 		linear-gradient(-134deg, rgb(197, 226, 248) 0%, rgb(174, 251, 223) 100%);
 	background-size: contain;
@@ -23,6 +22,7 @@
 	background-position: center center;
 	justify-content: center;
 	align-items: center;
+	padding: 55px 0px 65px;
 }
 
 .home-card-detail {

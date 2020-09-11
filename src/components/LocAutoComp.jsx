@@ -4,15 +4,13 @@ import { config } from "../config";
 import SearchBar from "material-ui-search-bar";
 import Script from "react-load-script";
 import "../styles/LocAutoComp.css";
-require("dotenv").config();
 
-export default function LocAutoComp({ data }) {
+export default function LocAutoComp({ props }) {
 	const [state, setState] = useState({
 		city: "",
 		query: "",
 	});
-
-	const gmapsUrl = process.env.GMAPS_API_URL;
+	const gmapsUrl = `https://maps.googleapis.com/maps/api/js?key=${process.env.REACT_APP_GMAPS_API_KEY}&libraries=places`;
 
 	function handleScriptLoad() {
 		// Declare Options For Autocomplete
@@ -52,6 +50,7 @@ export default function LocAutoComp({ data }) {
 				});
 			}
 			handleSubmit(addressObject);
+			
 		});
 	}
 
@@ -73,12 +72,15 @@ export default function LocAutoComp({ data }) {
 			})
 			.catch(function (error) {
 				console.log(error);
-			});
+			});		
 	}
 
 	return (
 		<div className="LocAutoComp">
-			<Script url={gmapsUrl} onLoad={handleScriptLoad} />
+			<Script
+				url={gmapsUrl}
+				onLoad={handleScriptLoad}
+			/>
 			<div className="Search__bar">
 				<SearchBar
 					className="Search__box"
@@ -87,7 +89,14 @@ export default function LocAutoComp({ data }) {
 					hintText="Search City"
 					value={state.query}
 				/>
-				<button className="Search__button">Proceed</button>
+				<button
+					className="Search__button"
+					onClick={() => {
+						props.history.push(`/${state.city}`);
+					}}
+				>
+					Proceed
+				</button>
 			</div>
 		</div>
 	);
