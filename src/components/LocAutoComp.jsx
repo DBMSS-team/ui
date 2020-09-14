@@ -5,7 +5,7 @@ import SearchBar from "material-ui-search-bar";
 import Script from "react-load-script";
 import "../styles/LocAutoComp.css";
 
-export default function LocAutoComp({ props }) {
+export default function LocAutoComp({ history }) {
 	const [state, setState] = useState({
 		city: "",
 		query: "",
@@ -50,7 +50,6 @@ export default function LocAutoComp({ props }) {
 				});
 			}
 			handleSubmit(addressObject);
-			
 		});
 	}
 
@@ -72,15 +71,12 @@ export default function LocAutoComp({ props }) {
 			})
 			.catch(function (error) {
 				console.log(error);
-			});		
+			});
 	}
 
 	return (
 		<div className="LocAutoComp">
-			<Script
-				url={gmapsUrl}
-				onLoad={handleScriptLoad}
-			/>
+			<Script url={gmapsUrl} onLoad={handleScriptLoad} />
 			<div className="Search__bar">
 				<SearchBar
 					className="Search__box"
@@ -92,7 +88,7 @@ export default function LocAutoComp({ props }) {
 				<button
 					className="Search__button"
 					onClick={() => {
-						props.history.push(`/${state.city}`);
+						history.push(`/${state.city}`);
 					}}
 				>
 					Proceed

@@ -17,6 +17,7 @@ import LocAutoComp from "./components/LocAutoComp";
 
 function App() {
 	const [loggedIn, setLoggedIn] = useState(false);
+	const [paths, setPath] = useState([]);
 
 	return (
 		<div className="App">
@@ -53,13 +54,33 @@ function App() {
 							</UserAuthContext.Provider>
 						)}
 					/>
-					<Route path="/" exact component={Home} />
+					<Route
+						path="/"
+						exact
+						render={(props) => (
+							<Home {...props} paths={paths} setPath={setPath} />
+						)}
+					/>
 					<Route path="/LocAutoComp" component={LocAutoComp} />
 					<Route path="/Order" component={Order} />
 					<Route path="/Header" component={Header} />
 					<Route path="/Cart" component={Cart} />
-					<Route path="/Stores/:type" component={Stores} />
-					<Route path="/:location" component={Home} />
+					<Route
+						path="/Stores/:type"
+						render={(props) => (
+							<Stores
+								{...props}
+								paths={paths}
+								setPath={setPath}
+							/>
+						)}
+					/>
+					<Route
+						path="/:location"
+						render={(props) => (
+							<Home {...props} paths={paths} setPath={setPath} />
+						)}
+					/>
 				</Switch>
 			</UserAuthContext.Provider>
 		</div>

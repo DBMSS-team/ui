@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import "../styles/Home.css";
 import Card from "@material-ui/core/Card";
 import CardContent from "@material-ui/core/CardContent";
@@ -25,8 +25,7 @@ const cards = [
 
 export default function Home(props) {
 	const location = props.match.params.location;
-
-	const navlist = [{ name: "Home" }, { name: location }];
+	const history = props.history;
 
 	const info =
 		"Why step out when you can get everything delivered home with the tap of a button? New Delhi's favourite delivery app gets you Food, Grocery, Medicine, Pet Supplies, Fruits & Vegetables, Meat & Fish, Health & Wellness, Gifts and Send Packages from one end of the city to the other. From your local kirana stores to your favourite brands, grocery shopping to your forgotten charger, we are always on the move for you. Why worry about your chores, when you can get it all Dun!";
@@ -36,7 +35,7 @@ export default function Home(props) {
 			<Header />
 			{location ? (
 				<>
-					<Navbar navlist={navlist} />
+					<Navbar navlist={[location]} history={history} />
 					<LocationInfo location={location} info={info} />
 				</>
 			) : (
@@ -48,7 +47,7 @@ export default function Home(props) {
 							it Dun!
 						</h3>
 					</div>
-					<LocAutoComp props = {props} />
+					<LocAutoComp history={history} />
 				</div>
 			)}
 			<main className="card__main">
@@ -69,7 +68,9 @@ export default function Home(props) {
 									sm={6}
 									md={4}
 									onClick={() => {
-										props.history.push(`/Stores/${card}`);
+										props.match.history.push(
+											`/Stores/${card}`
+										);
 									}}
 								>
 									<Card className="root">

@@ -6,9 +6,8 @@ import StoreCard from "../components/StoreCard";
 
 import "../styles/Stores.css";
 
-export default function Store({ match }) {
+export default function Store({ match, path, setPath }) {
 	const storeType = match.params.type;
-	const navlist = [{ name: "home" }, { name: "delhi" }, { name: storeType }];
 
 	const stores = [
 		{
@@ -58,7 +57,7 @@ export default function Store({ match }) {
 	return (
 		<div className="Stores">
 			<Header />
-			<Navbar navlist={navlist} />
+			<Navbar navlist={path} />
 			<div className="Stores__content">
 				<div className="Stores__content_body">
 					<div className="Stores__count">
@@ -83,6 +82,7 @@ export default function Store({ match }) {
 								distance={store.distance}
 								time={store.time}
 								location={store.location}
+								path={path}
 							/>
 						))}
 					</div>

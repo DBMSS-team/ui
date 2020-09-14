@@ -45,6 +45,11 @@
 	flex-direction: row;
 	align-items: center;
 }
+
+.root {
+	cursor: pointer;
+}
+
 .card-image {
 	width: 40%;
 }

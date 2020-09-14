@@ -1,16 +1,19 @@
-import React from 'react'
+import React from "react";
 
-import '../styles/Navbar.css'
+import "../styles/Navbar.css";
 
-export default function Navbar({ navlist }) {
+export default function Navbar({ navlist, history }) {
 	return (
 		<div className="Navbar">
 			<div className="Navbar__content">
-				{navlist.map((nav) => {
+				{navlist.map((nav, id) => {
 					return (
-						<span>
-							<span> / </span>
-							<a href="/Order">{nav.name}</a>
+						<span
+							onClick={() => {
+								history.go(navlist.length - id - 1);
+							}}
+						>
+							{nav + " /"}
 						</span>
 					);
 				})}

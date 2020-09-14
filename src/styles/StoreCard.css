@@ -5,6 +5,7 @@
 	margin: 30px 0px;
 	border-radius: 10px;
 	padding: 15px;
+	cursor: pointer;
 }
 
 .storecard:hover {
