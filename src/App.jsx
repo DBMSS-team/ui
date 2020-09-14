@@ -62,7 +62,7 @@ function App() {
 						)}
 					/>
 					<Route path="/LocAutoComp" component={LocAutoComp} />
-					<Route path="/Order" component={Order} />
+					<Route path="/Order/:storeName" component={Order} />
 					<Route path="/Header" component={Header} />
 					<Route path="/Cart" component={Cart} />
 					<Route

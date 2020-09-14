@@ -11,6 +11,7 @@ import Footer from "../components/Footer";
 import LocAutoComp from "../components/LocAutoComp";
 import LocationInfo from "../components/LocationInfo";
 import Navbar from "../components/Navbar";
+import { useHistory } from "react-router-dom";
 
 const cards = [
 	"Groceries",
@@ -25,7 +26,8 @@ const cards = [
 
 export default function Home(props) {
 	const location = props.match.params.location;
-	const history = props.history;
+	const history = useHistory();
+	const navList = ["Home", location];
 
 	const info =
 		"Why step out when you can get everything delivered home with the tap of a button? New Delhi's favourite delivery app gets you Food, Grocery, Medicine, Pet Supplies, Fruits & Vegetables, Meat & Fish, Health & Wellness, Gifts and Send Packages from one end of the city to the other. From your local kirana stores to your favourite brands, grocery shopping to your forgotten charger, we are always on the move for you. Why worry about your chores, when you can get it all Dun!";
@@ -35,7 +37,7 @@ export default function Home(props) {
 			<Header />
 			{location ? (
 				<>
-					<Navbar navlist={[location]} history={history} />
+					<Navbar navList={navList} />
 					<LocationInfo location={location} info={info} />
 				</>
 			) : (
@@ -68,9 +70,16 @@ export default function Home(props) {
 									sm={6}
 									md={4}
 									onClick={() => {
-										props.match.history.push(
-											`/Stores/${card}`
-										);
+										history.push({
+											pathname: `/Stores/${card
+												.trim()
+												.toLowerCase()
+												.replace(" ", "-")}`,
+											state: {
+												navList,
+												card,
+											},
+										});
 									}}
 								>
 									<Card className="root">
