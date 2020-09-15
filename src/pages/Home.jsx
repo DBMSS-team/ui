@@ -27,7 +27,8 @@ const cards = [
 export default function Home(props) {
 	const location = props.match.params.location;
 	const history = useHistory();
-	const navList = ["Home", location];
+	const navList = location ? ["Home", location] : ["Home"];
+	let noLocationClick = location ? false : true;
 
 	const info =
 		"Why step out when you can get everything delivered home with the tap of a button? New Delhi's favourite delivery app gets you Food, Grocery, Medicine, Pet Supplies, Fruits & Vegetables, Meat & Fish, Health & Wellness, Gifts and Send Packages from one end of the city to the other. From your local kirana stores to your favourite brands, grocery shopping to your forgotten charger, we are always on the move for you. Why worry about your chores, when you can get it all Dun!";
@@ -50,6 +51,7 @@ export default function Home(props) {
 						</h3>
 					</div>
 					<LocAutoComp history={history} />
+					{noLocationClick ? <>No location selected</> : <></>}
 				</div>
 			)}
 			<main className="card__main">
@@ -70,16 +72,20 @@ export default function Home(props) {
 									sm={6}
 									md={4}
 									onClick={() => {
-										history.push({
-											pathname: `/Stores/${card
-												.trim()
-												.toLowerCase()
-												.replace(" ", "-")}`,
-											state: {
-												navList,
-												card,
-											},
-										});
+										if (navList.length > 1) {
+											history.push({
+												pathname: `/Stores/${card
+													.trim()
+													.toLowerCase()
+													.replace(" ", "-")}`,
+												state: {
+													navList,
+													card,
+												},
+											});
+										} else {
+											window.scrollTo(0, 0);
+										}
 									}}
 								>
 									<Card className="root">
