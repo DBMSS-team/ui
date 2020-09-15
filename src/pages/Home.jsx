@@ -24,6 +24,12 @@ const cards = [
 	"Bike Pool",
 ];
 
+// function scrollUp() {
+// 	useEffect(() => {
+// 		window.scrollTo(0, 0);
+// 	}, [1]);
+// }
+
 export default function Home(props) {
 	const location = props.match.params.location;
 	const history = useHistory();
@@ -85,6 +91,7 @@ export default function Home(props) {
 											});
 										} else {
 											window.scrollTo(0, 0);
+											// scrollUp();
 										}
 									}}
 								>
