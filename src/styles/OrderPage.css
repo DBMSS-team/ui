@@ -1,0 +1,17 @@
+.OrderPage__content__wrapper {
+	display: flex;
+	justify-content: center;
+}
+.OrderPage__content {
+	display: flex;
+	max-width: 1024px;
+	box-shadow: 0px 0px 50px #c1c1c1;
+	border-radius: 5px;
+	width: 100%;
+}
+
+.Order__home {
+}
+
+.cart {
+}

@@ -13,6 +13,7 @@ import Header from "./components/Header";
 import Cart from "./components/Cart";
 import Home from "./pages/Home";
 import Stores from "./pages/Stores";
+import OrderPage from "./pages/OrderPage";
 import LocAutoComp from "./components/LocAutoComp";
 
 function App() {
@@ -45,16 +46,6 @@ function App() {
 					/>
 					<Route path="/signup" component={SignUp} />
 					<Route
-						path="/order"
-						render={(props) => (
-							<UserAuthContext.Provider
-								value={{ loggedIn, setLoggedIn }}
-							>
-								<Order {...props} />
-							</UserAuthContext.Provider>
-						)}
-					/>
-					<Route
 						path="/"
 						exact
 						render={(props) => (
@@ -62,7 +53,7 @@ function App() {
 						)}
 					/>
 					<Route path="/LocAutoComp" component={LocAutoComp} />
-					<Route path="/Order/:storeName" component={Order} />
+					<Route path="/Order/:storeName" component={OrderPage} />
 					<Route path="/Header" component={Header} />
 					<Route path="/Cart" component={Cart} />
 					<Route

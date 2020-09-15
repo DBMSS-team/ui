@@ -5,7 +5,7 @@ import SearchBar from "material-ui-search-bar";
 import Script from "react-load-script";
 import "../styles/LocAutoComp.css";
 
-export default function LocAutoComp({ history }) {
+export default function LocAutoComp({ history, handleClick }) {
 	const [state, setState] = useState({
 		city: "",
 		query: "",
@@ -62,16 +62,11 @@ export default function LocAutoComp({ history }) {
 		axios
 			.post(config.SERVER_URL + "/location", payload)
 			.then(function (response) {
-				console.log(response);
 				if (response.status === 200) {
-					console.log("Success");
 				} else {
-					console.log("Error");
 				}
 			})
-			.catch(function (error) {
-				console.log(error);
-			});
+			.catch(function (error) {});
 	}
 
 	return (
@@ -84,6 +79,7 @@ export default function LocAutoComp({ history }) {
 					placeholder="Search for a location"
 					hintText="Search City"
 					value={state.query}
+					onClick={handleClick}
 				/>
 				<button
 					className="Search__button"

@@ -57,11 +57,12 @@ export default function Store(props) {
 	const history = useHistory();
 
 	function handleStoreClick(name) {
+		navList.push(card);
 		history.push({
 			pathname: `/Order/${name.trim().toLowerCase().replace(" ", "-")}`,
 			state: {
 				navList,
-				card,
+				name,
 			},
 		});
 	}
