@@ -4,13 +4,31 @@ import { config } from "../config";
 import SearchBar from "material-ui-search-bar";
 import Script from "react-load-script";
 import "../styles/LocAutoComp.css";
+import { useHistory } from "react-router-dom";
 
-export default function LocAutoComp({ history, handleClick }) {
+export default function LocAutoComp({ handleClick }) {
 	const [state, setState] = useState({
 		city: "",
 		query: "",
+		country: "",
 	});
+	const history = useHistory();
 	const gmapsUrl = `https://maps.googleapis.com/maps/api/js?key=${process.env.REACT_APP_GMAPS_API_KEY}&libraries=places`;
+
+	function handleSearch(address) {
+		return (
+			address.find((atr) => atr.types.includes("sublocality_level_2")) ||
+			address.find((atr) => atr.types.includes("sublocality_level_1")) ||
+			address.find((atr) => atr.types.includes("locality")) ||
+			address.find((atr) =>
+				atr.types.includes("administrative_area_level_1")
+			) ||
+			address.find((atr) =>
+				atr.types.includes("administrative_area_level_2")
+			) ||
+			address.find((atr) => atr.types.includes("country"))
+		).long_name;
+	}
 
 	function handleScriptLoad() {
 		// Declare Options For Autocomplete
@@ -31,9 +49,8 @@ export default function LocAutoComp({ history, handleClick }) {
 			"address_components",
 			"formatted_address",
 			"geometry",
-			"icon",
-			"name",
 		]);
+		//autocomplete.setComponentRestrictions({ country: ["in"] });
 
 		// Fire Event when a suggested name is selected
 		autocomplete.addListener("place_changed", () => {
@@ -41,12 +58,16 @@ export default function LocAutoComp({ history, handleClick }) {
 			const addressObject = autocomplete.getPlace();
 			const address = addressObject.address_components;
 
-			// Check if address is valid
+			//Check if address is valid
 			if (address) {
 				// Set State
 				setState({
-					city: address[0].long_name,
+					country: address.find((atr) =>
+						atr.types.includes("country")
+					).long_name,
+					city: handleSearch(address),
 					query: addressObject.formatted_address,
+					
 				});
 			}
 			handleSubmit(addressObject);
@@ -57,8 +78,9 @@ export default function LocAutoComp({ history, handleClick }) {
 		var payload = {
 			latitude: addressObject.geometry.location.lat(),
 			longitude: addressObject.geometry.location.lng(),
-			place: addressObject.address_components[0].long_name,
+			place: handleSearch(addressObject.address_components),
 		};
+		console.log(payload);
 		axios
 			.post(config.SERVER_URL + "/location", payload)
 			.then(function (response) {
@@ -83,8 +105,9 @@ export default function LocAutoComp({ history, handleClick }) {
 				/>
 				<button
 					className="Search__button"
-					onClick={() => {
-						history.push(`/${state.city}`);
+					onClick={() => { state.country === "India"
+						? history.push(`/${state.city}`)
+						: history.push("/NoDelivery")
 					}}
 				>
 					Proceed

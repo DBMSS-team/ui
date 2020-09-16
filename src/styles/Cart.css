@@ -94,7 +94,7 @@
 	size: 10px;
 	cursor: pointer;
 }
-img {
+.cart-item img {
 	height: 15px;
 	width: 15px;
 }

@@ -60,7 +60,6 @@ export default function Home(props) {
 						</h3>
 					</div>
 					<LocAutoComp
-						history={history}
 						handleClick={() => {
 							setNoLocationClick(false);
 						}}
