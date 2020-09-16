@@ -9,8 +9,24 @@ export default function LocAutoComp({ props }) {
 	const [state, setState] = useState({
 		city: "",
 		query: "",
+		country: "",
 	});
 	const gmapsUrl = `https://maps.googleapis.com/maps/api/js?key=${process.env.REACT_APP_GMAPS_API_KEY}&libraries=places`;
+
+	function handleSearch(address) {
+		return (
+			address.find((atr) => atr.types.includes("sublocality_level_2")) ||
+			address.find((atr) => atr.types.includes("sublocality_level_1")) ||
+			address.find((atr) => atr.types.includes("locality")) ||
+			address.find((atr) =>
+				atr.types.includes("administrative_area_level_1")
+			) ||
+			address.find((atr) =>
+				atr.types.includes("administrative_area_level_2")
+			) ||
+			address.find((atr) => atr.types.includes("country"))
+		).long_name;
+	}
 
 	function handleScriptLoad() {
 		// Declare Options For Autocomplete
@@ -31,9 +47,8 @@ export default function LocAutoComp({ props }) {
 			"address_components",
 			"formatted_address",
 			"geometry",
-			"icon",
-			"name",
 		]);
+		//autocomplete.setComponentRestrictions({ country: ["in"] });
 
 		// Fire Event when a suggested name is selected
 		autocomplete.addListener("place_changed", () => {
@@ -41,16 +56,19 @@ export default function LocAutoComp({ props }) {
 			const addressObject = autocomplete.getPlace();
 			const address = addressObject.address_components;
 
-			// Check if address is valid
+			//Check if address is valid
 			if (address) {
 				// Set State
 				setState({
-					city: address[0].long_name,
+					country: address.find((atr) =>
+						atr.types.includes("country")
+					).long_name,
+					city: handleSearch(address),
 					query: addressObject.formatted_address,
+					
 				});
 			}
 			handleSubmit(addressObject);
-			
 		});
 	}
 
@@ -58,8 +76,9 @@ export default function LocAutoComp({ props }) {
 		var payload = {
 			latitude: addressObject.geometry.location.lat(),
 			longitude: addressObject.geometry.location.lng(),
-			place: addressObject.address_components[0].long_name,
+			place: handleSearch(addressObject.address_components),
 		};
+		console.log(payload);
 		axios
 			.post(config.SERVER_URL + "/location", payload)
 			.then(function (response) {
@@ -72,15 +91,12 @@ export default function LocAutoComp({ props }) {
 			})
 			.catch(function (error) {
 				console.log(error);
-			});		
+			});
 	}
 
 	return (
 		<div className="LocAutoComp">
-			<Script
-				url={gmapsUrl}
-				onLoad={handleScriptLoad}
-			/>
+			<Script url={gmapsUrl} onLoad={handleScriptLoad} />
 			<div className="Search__bar">
 				<SearchBar
 					className="Search__box"
@@ -91,8 +107,9 @@ export default function LocAutoComp({ props }) {
 				/>
 				<button
 					className="Search__button"
-					onClick={() => {
-						props.history.push(`/${state.city}`);
+					onClick={() => { state.country === "India"
+						? props.history.push(`/${state.city}`)
+						: props.history.push("/NoDelivery")
 					}}
 				>
 					Proceed
