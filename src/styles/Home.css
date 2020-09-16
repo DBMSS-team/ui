@@ -45,6 +45,11 @@
 	flex-direction: row;
 	align-items: center;
 }
+
+.root {
+	cursor: pointer;
+}
+
 .card-image {
 	width: 40%;
 }
@@ -59,6 +64,24 @@
 	justify-content: space-between;
 	width: 100%;
 	max-width: 1024px;
+}
+
+.location_error {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	color: red;
+	padding: 5px 20px;
+	border-radius: 5px;
+	background: rgb(255, 224, 224);
+}
+
+.location_error * {
+	margin-right: 20px;
+}
+
+.location_error svg {
+	fill: red;
 }
 
 @media (min-width: 600px) {

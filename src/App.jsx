@@ -14,10 +14,12 @@ import Cart from "./components/Cart";
 import Home from "./pages/Home";
 import Stores from "./pages/Stores";
 import NoDelivery from "./pages/NoDelivery";
+import OrderPage from "./pages/OrderPage";
 import LocAutoComp from "./components/LocAutoComp";
 
 function App() {
 	const [loggedIn, setLoggedIn] = useState(false);
+	const [paths, setPath] = useState([]);
 
 	return (
 		<div className="App">
@@ -45,23 +47,35 @@ function App() {
 					/>
 					<Route path="/signup" component={SignUp} />
 					<Route
-						path="/order"
+						path="/"
+						exact
 						render={(props) => (
-							<UserAuthContext.Provider
-								value={{ loggedIn, setLoggedIn }}
-							>
-								<Order {...props} />
-							</UserAuthContext.Provider>
+							<Home {...props} paths={paths} setPath={setPath} />
 						)}
 					/>
-					<Route path="/" exact component={Home} />
 					<Route path="/LocAutoComp" component={LocAutoComp} />
-					<Route path="/Order" component={Order} />
+					<Route path="/Order/:storeName" component={OrderPage} />
 					<Route path="/Header" component={Header} />
 					<Route path="/Cart" component={Cart} />
 					<Route path="/NoDelivery" component={NoDelivery} />
 					<Route path="/Stores/:type" component={Stores} />
 					<Route path="/:location" component={Home} />
+					<Route
+						path="/Stores/:type"
+						render={(props) => (
+							<Stores
+								{...props}
+								paths={paths}
+								setPath={setPath}
+							/>
+						)}
+					/>
+					<Route
+						path="/:location"
+						render={(props) => (
+							<Home {...props} paths={paths} setPath={setPath} />
+						)}
+					/>
 				</Switch>
 			</UserAuthContext.Provider>
 		</div>

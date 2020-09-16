@@ -4,13 +4,15 @@ import { config } from "../config";
 import SearchBar from "material-ui-search-bar";
 import Script from "react-load-script";
 import "../styles/LocAutoComp.css";
+import { useHistory } from "react-router-dom";
 
-export default function LocAutoComp({ props }) {
+export default function LocAutoComp({ handleClick }) {
 	const [state, setState] = useState({
 		city: "",
 		query: "",
 		country: "",
 	});
+	const history = useHistory();
 	const gmapsUrl = `https://maps.googleapis.com/maps/api/js?key=${process.env.REACT_APP_GMAPS_API_KEY}&libraries=places`;
 
 	function handleSearch(address) {
@@ -82,16 +84,11 @@ export default function LocAutoComp({ props }) {
 		axios
 			.post(config.SERVER_URL + "/location", payload)
 			.then(function (response) {
-				console.log(response);
 				if (response.status === 200) {
-					console.log("Success");
 				} else {
-					console.log("Error");
 				}
 			})
-			.catch(function (error) {
-				console.log(error);
-			});
+			.catch(function (error) {});
 	}
 
 	return (
@@ -104,12 +101,13 @@ export default function LocAutoComp({ props }) {
 					placeholder="Search for a location"
 					hintText="Search City"
 					value={state.query}
+					onClick={handleClick}
 				/>
 				<button
 					className="Search__button"
 					onClick={() => { state.country === "India"
-						? props.history.push(`/${state.city}`)
-						: props.history.push("/NoDelivery")
+						? history.push(`/${state.city}`)
+						: history.push("/NoDelivery")
 					}}
 				>
 					Proceed

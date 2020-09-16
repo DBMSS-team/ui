@@ -1,15 +1,7 @@
-* {
-	box-sizing: border-box;
-}
-html,
-body {
-	font-family: "Roboto", sans-serif;
-}
 .cart {
-	margin: 7px auto;
-	height: 100%;
 	width: 50%;
 	display: flex;
+	padding: 20px;
 	flex-direction: column;
 	background: #ffffff;
 }
@@ -102,7 +94,7 @@ body {
 	size: 10px;
 	cursor: pointer;
 }
-img {
+.cart-item img {
 	height: 15px;
 	width: 15px;
 }

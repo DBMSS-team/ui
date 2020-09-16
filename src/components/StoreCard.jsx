@@ -1,9 +1,16 @@
 import React from "react";
 import "../styles/StoreCard.css";
 
-export default function ({ name, type, distance, location, time }) {
+export default function StoreCard({
+	name,
+	type,
+	distance,
+	location,
+	time,
+	handleStoreClick,
+}) {
 	return (
-		<div className="storecard">
+		<div className="storecard" onClick={() => handleStoreClick(name)}>
 			<div className="storecard__left">
 				<img
 					src="/assets/images/empire.png"

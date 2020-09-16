@@ -5,60 +5,72 @@ import Navbar from "../components/Navbar";
 import StoreCard from "../components/StoreCard";
 
 import "../styles/Stores.css";
+import { useHistory } from "react-router-dom";
 
-export default function Store({ match }) {
-	const storeType = match.params.type;
-	const navlist = [{ name: "home" }, { name: "delhi" }, { name: storeType }];
+const stores = [
+	{
+		name: "Yumlane Pizza",
+		type: "",
+		distance: "25km",
+		location: "Italian, Dessert Halasuru",
+		time: "20 min",
+	},
+	{
+		name: "Yumlane Pizza",
+		type: "",
+		distance: "25km",
+		location: "Italian, Dessert Halasuru",
+		time: "20 min",
+	},
+	{
+		name: "Yumlane Pizza",
+		type: "",
+		distance: "25km",
+		location: "Italian, Dessert Halasuru",
+		time: "20 min",
+	},
+	{
+		name: "Yumlane Pizza",
+		type: "",
+		distance: "25km",
+		location: "Italian, Dessert Halasuru",
+		time: "20 min",
+	},
+	{
+		name: "Yumlane Pizza",
+		type: "Fast Food",
+		distance: "25km",
+		location: "Italian, Dessert Halasuru",
+		time: "20 min",
+	},
+	{
+		name: "Yumlane Pizza",
+		type: "",
+		distance: "25km",
+		location: "Italian, Dessert Halasuru",
+		time: "20 min",
+	},
+];
 
-	const stores = [
-		{
-			name: "Yumlane Pizza",
-			type: "",
-			distance: "25km",
-			location: "Italian, Dessert Halasuru",
-			time: "20 min",
-		},
-		{
-			name: "Yumlane Pizza",
-			type: "",
-			distance: "25km",
-			location: "Italian, Dessert Halasuru",
-			time: "20 min",
-		},
-		{
-			name: "Yumlane Pizza",
-			type: "",
-			distance: "25km",
-			location: "Italian, Dessert Halasuru",
-			time: "20 min",
-		},
-		{
-			name: "Yumlane Pizza",
-			type: "",
-			distance: "25km",
-			location: "Italian, Dessert Halasuru",
-			time: "20 min",
-		},
-		{
-			name: "Yumlane Pizza",
-			type: "Fast Food",
-			distance: "25km",
-			location: "Italian, Dessert Halasuru",
-			time: "20 min",
-		},
-		{
-			name: "Yumlane Pizza",
-			type: "",
-			distance: "25km",
-			location: "Italian, Dessert Halasuru",
-			time: "20 min",
-		},
-	];
+export default function Store(props) {
+	const { navList, card } = props.location.state;
+	const history = useHistory();
+
+	function handleStoreClick(name) {
+		navList.push(card);
+		history.push({
+			pathname: `/Order/${name.trim().toLowerCase().replace(" ", "-")}`,
+			state: {
+				navList,
+				name,
+			},
+		});
+	}
 
 	return (
 		<div className="Stores">
 			<Header />
-			<Navbar navlist={navlist} />
+			<Navbar navList={[...navList, card]} />
 			<div className="Stores__content">
 				<div className="Stores__content_body">
 					<div className="Stores__count">
@@ -83,6 +95,7 @@ export default function Store({ match }) {
 								distance={store.distance}
 								time={store.time}
 								location={store.location}
+								handleStoreClick={handleStoreClick}
 							/>
 						))}
 					</div>

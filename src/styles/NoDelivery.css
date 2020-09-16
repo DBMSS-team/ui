@@ -7,13 +7,26 @@
 	margin-top: 50px;
 }
 
+.LineOne {
+	margin: 10px 0px;
+}
 
+.LineTwo {
+	margin: 3px 0px;
+}
 .GoBack {
 	cursor: pointer;
-	background-color: rgb(107, 197, 107);
-	border-radius: 8px;
+	background-color: #00d290;
+	border-radius: 20px;
 	font-weight: 2px;
 	margin: 20px 0px 50px 0px;
-	padding: 10px;
+	padding: 10px 40px;
 	font-weight: bold;
+	color: white;
+	border: none;
+}
+
+.NoDelivery img {
+	width: 100px;
+	height: 100px;
 }
