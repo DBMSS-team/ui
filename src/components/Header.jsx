@@ -8,35 +8,24 @@ import { Redirect, Link, useHistory } from "react-router-dom";
 export default function Header() {
 	const history = useHistory();
 
-	function handleCart(event) {
-		history.push("/cart");
-	}
-
-	function handleTitle() {
-		history.push("/");
-	}
-
-	//if (titleClick === true) return <Redirect to="/" />;
-
-	function handleSignIn(event) {
-		history.push("/login");
-	}
-
 	return (
 		<div className="header">
 			<div className="header__content">
-				<h1 className="title" onClick={handleTitle}>
+				<h1 className="title" onClick={() => history.push("/")}>
 					BENZO!
 				</h1>
 				<div className="header__controls">
 					<IconButton
 						className="header-cart"
 						size="lg"
-						onClick={handleCart}
+						onClick={() => history.push("/cart")}
 					>
 						<ShoppingCartIcon />
 					</IconButton>
-					<button className="header-button" onClick={handleSignIn}>
+					<button
+						className="header-button"
+						onClick={() => history.push("/login")}
+					>
 						Sign In
 					</button>
 				</div>

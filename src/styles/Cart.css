@@ -79,21 +79,6 @@
 	border: 0.25px solid rgb(15 25 56 / 7%);
 }
 
-.addbutton {
-	background: none;
-	border: none;
-	color: rgb(0, 210, 144);
-	outline: none;
-	size: 10px;
-	cursor: pointer;
-}
-.removebutton {
-	background: none;
-	border: none;
-	outline: none;
-	size: 10px;
-	cursor: pointer;
-}
 .cart-item img {
 	height: 15px;
 	width: 15px;
