@@ -4,6 +4,8 @@ import AddIcon from "@material-ui/icons/Add";
 import RemoveIcon from "@material-ui/icons/Remove";
 import IconButton from "@material-ui/core/IconButton";
 import Button from "@material-ui/core/Button";
+import { useHistory } from "react-router-dom";
+
 const cartItems = [
 	{
 		id: 1,
@@ -21,6 +23,7 @@ const cartItems = [
 	},
 ];
 export default function Cart() {
+	const history = useHistory();
 	const [items, setItems] = useState(cartItems);
 
 	return (
@@ -44,10 +47,10 @@ export default function Cart() {
 								<div class="cart-item-name">{item.name}</div>
 								<div class="quantity">
 									<IconButton
-										disableRipple
 										aria-label="delete"
 										color="white"
 										class="removebutton"
+										disableRipple
 										onClick={() => {
 											setItems(() => {
 												return items.map((i) => {
@@ -65,10 +68,10 @@ export default function Cart() {
 									</IconButton>
 									{item.quantity}
 									<IconButton
-										disableRipple
 										aria-label="add"
 										color="primary"
 										class="addbutton"
+										disableRipple
 										onClick={() => {
 											setItems(() => {
 												return items.map((i) => {
@@ -101,6 +104,8 @@ export default function Cart() {
 					variant="contained"
 					color="primary"
 					size="lg"
+					disableRipple
+					onClick={()=>console.log("add payment")}
 				>
 					Proceed to Checkout
 				</Button>
