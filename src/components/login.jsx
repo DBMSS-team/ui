@@ -78,7 +78,7 @@ export default function Login() {
 			password: password,
 		};
 		axios
-			.post(config.SERVER_URL + "/auth/login", payload)
+			.post(config.usersHost + "/auth/login", payload)
 			.then(function (response) {
 				console.log(response);
 				if (response.status === 200) {

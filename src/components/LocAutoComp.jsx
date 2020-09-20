@@ -67,7 +67,7 @@ export default function LocAutoComp({ handleClick }) {
 					).long_name,
 					city: handleSearch(address),
 					query: addressObject.formatted_address,
-					
+
 				});
 			}
 			handleSubmit(addressObject);
@@ -82,13 +82,13 @@ export default function LocAutoComp({ handleClick }) {
 		};
 		console.log(payload);
 		axios
-			.post(config.SERVER_URL + "/location", payload)
+			.post(config.usersHost + "/location", payload)
 			.then(function (response) {
 				if (response.status === 200) {
 				} else {
 				}
 			})
-			.catch(function (error) {});
+			.catch(function (error) { });
 	}
 
 	return (
@@ -105,7 +105,8 @@ export default function LocAutoComp({ handleClick }) {
 				/>
 				<button
 					className="Search__button"
-					onClick={() => { state.country === "India"
+					onClick={() => {
+						state.country === "India"
 						? history.push(`/${state.city}`)
 						: history.push("/NoDelivery")
 					}}

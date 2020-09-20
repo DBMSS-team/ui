@@ -71,7 +71,7 @@ export default function SignUp() {
 
 	function handleClick(event) {
 		event.preventDefault();
-		var apiBaseUrl = `${config.SERVER_URL}/users`;
+		var apiBaseUrl = `${config.usersHost}/users`;
 
 		//To be done:check for empty values before hitting submit
 		var payload = {
