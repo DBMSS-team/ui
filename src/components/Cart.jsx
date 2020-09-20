@@ -44,6 +44,7 @@ export default function Cart() {
 								<div class="cart-item-name">{item.name}</div>
 								<div class="quantity">
 									<IconButton
+										disableRipple
 										aria-label="delete"
 										color="white"
 										class="removebutton"
@@ -64,6 +65,7 @@ export default function Cart() {
 									</IconButton>
 									{item.quantity}
 									<IconButton
+										disableRipple
 										aria-label="add"
 										color="primary"
 										class="addbutton"
