@@ -3,8 +3,16 @@ import "../styles/Cart.css";
 import AddIcon from "@material-ui/icons/Add";
 import RemoveIcon from "@material-ui/icons/Remove";
 import IconButton from "@material-ui/core/IconButton";
+import { createMuiTheme, ThemeProvider } from "@material-ui/core";
 import Button from "@material-ui/core/Button";
 import { useHistory } from "react-router-dom";
+import { green } from "@material-ui/core/colors";
+
+const theme = createMuiTheme({
+	palette: {
+		primary: green,
+	},
+});
 
 const cartItems = [
 	{
@@ -49,8 +57,7 @@ export default function Cart() {
 									<IconButton
 										aria-label="delete"
 										color="white"
-										class="removebutton"
-										disableRipple
+										variant="contained"
 										onClick={() => {
 											setItems(() => {
 												return items.map((i) => {
@@ -67,23 +74,24 @@ export default function Cart() {
 										<RemoveIcon />
 									</IconButton>
 									{item.quantity}
-									<IconButton
-										aria-label="add"
-										color="primary"
-										class="addbutton"
-										disableRipple
-										onClick={() => {
-											setItems(() => {
-												return items.map((i) => {
-													if (i.id === item.id)
-														i.quantity++;
-													return i;
+									<ThemeProvider theme={theme}>
+										<IconButton
+											color="primary"
+											variant="contained"
+											aria-label="add"
+											onClick={() => {
+												setItems(() => {
+													return items.map((i) => {
+														if (i.id === item.id)
+															i.quantity++;
+														return i;
+													});
 												});
-											});
-										}}
-									>
-										<AddIcon />
-									</IconButton>
+											}}
+										>
+											<AddIcon />
+										</IconButton>
+									</ThemeProvider>
 								</div>
 								<div class="cart-item-price">
 									{"₹" + item.price}
@@ -98,18 +106,21 @@ export default function Cart() {
 				<div class="cart-item-name-bold">Item Total</div>
 				<div class="cart-item-price">₹175/-</div>
 			</div>
-			<div class="checkout">
-				<Button
-					class="button-checkout"
-					variant="contained"
-					color="primary"
-					size="lg"
-					disableRipple
-					onClick={()=>console.log("add payment")}
-				>
-					Proceed to Checkout
-				</Button>
+			<div>
+				<ThemeProvider theme={theme}>
+					<Button
+						class="button-checkout"
+						variant="contained"
+						color="primary"
+						size="lg"
+						disableRipple
+						onClick={() => console.log("add payment")}
+					>
+						Proceed to Checkout
+					</Button>
+				</ThemeProvider>
 			</div>
 		</div>
+		//</MuiThemeProvider>
 	);
 }
