@@ -10,9 +10,10 @@
 	display: flex;
 	justify-content: start;
 	flex-direction: column;
-	border-right: 1.5px solid #f3f3f5;
+	border-right: 1.5px solid #e7e8eb;
 	align-items: flex-end;
 	padding-top: 20px;
+	flex-grow: 1;
 }
 
 .Order__category {
@@ -30,6 +31,7 @@
 
 .Order__items {
 	width: 70%;
+	flex-grow: 1;
 	overflow: auto;
 }
 
@@ -46,6 +48,11 @@
 }
 
 .Order__item__line {
+	display: flex;
+	justify-content: space-between;
+}
+
+.Order__item__line_left {
 	display: flex;
 }
 
