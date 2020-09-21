@@ -12,7 +12,6 @@ import LocAutoComp from "../components/LocAutoComp";
 import LocationInfo from "../components/LocationInfo";
 import Navbar from "../components/Navbar";
 import { useHistory } from "react-router-dom";
-import axios from "axios";
 import { config } from "../config";
 
 // function scrollUp() {
@@ -26,21 +25,23 @@ export default function Home(props) {
 	const history = useHistory();
 	const navList = location ? ["Home", location] : ["Home"];
 	const [noLocationClick, setNoLocationClick] = useState(false);
-	let [storesLoading, setStoresLoading] = useState(true);
-	let cards = [];
+	const [cards, setCards] = useState([]);
+
 	//let noLocationClick = location ? false : true;
 
-	console.log(storesLoading);
-	axios.get(config.storesHost + "/store")
-		.then(stores => {
-			console.log(stores);
-			cards = stores.data;
-			setStoresLoading(false);
-			console.log(storesLoading);
-		})
-		.catch(err => {
-			console.log(err);
-		})
+
+	useEffect(() => {
+		fetch(config.storesHost + "/store/categories")
+			.then(stores => {
+				return stores.json();
+			})
+			.then((data) => {
+				setCards(data);
+			})
+			.catch(err => {
+				console.log(err);
+			})
+		},[]);
 
 	const info =
 		"Why step out when you can get everything delivered home with the tap of a button? New Delhi's favourite delivery app gets you Food, Grocery, Medicine, Pet Supplies, Fruits & Vegetables, Meat & Fish, Health & Wellness, Gifts and Send Packages from one end of the city to the other. From your local kirana stores to your favourite brands, grocery shopping to your forgotten charger, we are always on the move for you. Why worry about your chores, when you can get it all Dun!";
@@ -95,7 +96,7 @@ export default function Home(props) {
 						</div>
 						{/* End hero unit */}
 
-						{storesLoading ? (<>Loading</>) : (
+						{cards.length === 0 ? (<>Loading</>) : (
 							<Grid container spacing={4}>
 
 								{cards.map((card) => (

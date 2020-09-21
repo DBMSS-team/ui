@@ -1,60 +1,33 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
 import Navbar from "../components/Navbar";
 import StoreCard from "../components/StoreCard";
+import { config } from "../config";
 
 import "../styles/Stores.css";
 import { useHistory } from "react-router-dom";
-
-const stores = [
-	{
-		name: "Yumlane Pizza",
-		type: "",
-		distance: "25km",
-		location: "Italian, Dessert Halasuru",
-		time: "20 min",
-	},
-	{
-		name: "Yumlane Pizza",
-		type: "",
-		distance: "25km",
-		location: "Italian, Dessert Halasuru",
-		time: "20 min",
-	},
-	{
-		name: "Yumlane Pizza",
-		type: "",
-		distance: "25km",
-		location: "Italian, Dessert Halasuru",
-		time: "20 min",
-	},
-	{
-		name: "Yumlane Pizza",
-		type: "",
-		distance: "25km",
-		location: "Italian, Dessert Halasuru",
-		time: "20 min",
-	},
-	{
-		name: "Yumlane Pizza",
-		type: "Fast Food",
-		distance: "25km",
-		location: "Italian, Dessert Halasuru",
-		time: "20 min",
-	},
-	{
-		name: "Yumlane Pizza",
-		type: "",
-		distance: "25km",
-		location: "Italian, Dessert Halasuru",
-		time: "20 min",
-	},
-];
+import NoDelivery from "./NoDelivery";
 
 export default function Store(props) {
 	const { navList, card } = props.location.state;
 	const history = useHistory();
+	const [stores, setStores] = useState(null);
+
+	useEffect(() => {
+		fetch(config.storesHost + "/store")
+		.then(stores => {
+			console.log(stores);
+			return stores.json() 
+		})
+		.then((data) => {
+			setStores(data);
+			console.log(data);
+		})
+		.catch(err => {
+			console.log(err);
+		})
+	},[]);
 
 	function handleStoreClick(name) {
 		navList.push(card);
@@ -88,16 +61,17 @@ export default function Store(props) {
 						</div>
 					</div>
 					<div className="Stores__list">
-						{stores.map((store) => (
+						{stores && stores.length === 0 ? history.push(`/no-delivery`) : (
+						stores == null ? <div>Loading...</div> : stores.map((store) => (
 							<StoreCard
 								name={store.name}
-								type={store.type}
+								type={store.categoryName}
 								distance={store.distance}
 								time={store.time}
-								location={store.location}
+								location={store.address.line1}
 								handleStoreClick={handleStoreClick}
 							/>
-						))}
+						)))}
 					</div>
 				</div>
 			</div>

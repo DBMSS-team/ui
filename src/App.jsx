@@ -57,7 +57,7 @@ function App() {
 					<Route path="/Order/:storeName" component={OrderPage} />
 					<Route path="/Header" component={Header} />
 					<Route path="/Cart" component={Cart} />
-					<Route path="/NoDelivery" component={NoDelivery} />
+					<Route path="/no-delivery" component={NoDelivery} />
 					<Route path="/Stores/:type" component={Stores} />
 					<Route path="/:location" component={Home} />
 					<Route
