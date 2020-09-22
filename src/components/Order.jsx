@@ -1,5 +1,9 @@
 import React, { useState } from "react";
 
+import AddIcon from "@material-ui/icons/Add";
+import RemoveIcon from "@material-ui/icons/Remove";
+import IconButton from "@material-ui/core/IconButton";
+
 import "../styles/Order.css";
 
 export default function Order() {
@@ -86,15 +90,37 @@ export default function Order() {
 					.items.map((item) => (
 						<div className="Order__item__details">
 							<div className="Order__item__line">
-								<div className="Order__item__type">
-									{item.type === "V" ? (
-										<img src="/Images/Veg.svg" />
-									) : (
-										<img src="/Images/NonVeg.svg" />
-									)}
+								<div className="Order__item__line_left">
+									<div className="Order__item__type">
+										{item.type === "V" ? (
+											<img src="/Images/Veg.svg" />
+										) : (
+											<img src="/Images/NonVeg.svg" />
+										)}
+									</div>
+									<div className="Order__item__name">
+										{item.name}
+									</div>
 								</div>
-								<div className="Order__item__name">
-									{item.name}
+
+								<div class="quantity">
+									<IconButton
+										aria-label="delete"
+										color="white"
+										class="removebutton"
+										onClick={() => {}}
+									>
+										<RemoveIcon />
+									</IconButton>
+									{item.quantity}
+									<IconButton
+										aria-label="add"
+										color="primary"
+										class="addbutton"
+										onClick={() => {}}
+									>
+										<AddIcon />
+									</IconButton>
 								</div>
 							</div>
 							<div className="Order__item__price">

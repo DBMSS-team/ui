@@ -108,7 +108,7 @@ export default function LocAutoComp({ handleClick }) {
 					onClick={() => {
 						state.country === "India"
 						? history.push(`/${state.city}`)
-						: history.push("/NoDelivery")
+						: history.push("/no-delivery")
 					}}
 				>
 					Proceed
