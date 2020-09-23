@@ -1,13 +1,16 @@
-import React, { useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 
 import AddIcon from "@material-ui/icons/Add";
 import RemoveIcon from "@material-ui/icons/Remove";
 import IconButton from "@material-ui/core/IconButton";
-
+import { useHistory } from "react-router-dom";
+import { config } from "../config";
 import "../styles/Order.css";
 
 export default function Order() {
 	const [clickedItem, setclickedItem] = useState("Quick Bites");
+	const [store, setStore] = useState([]);
+	const [product, setProduct] = useState([]);
 	const listItems = [
 		{
 			name: "Quick Bites",
@@ -66,6 +69,34 @@ export default function Order() {
 			],
 		},
 	];
+
+	const storeId = "5f673f25b61fb9d7a1e99815";
+	useEffect(() => {
+		fetch(config.storesHost + "/store/" + storeId)
+			.then((store) => {
+				return store.json();
+			})
+			.then(async (data) => {
+				setStore(data);
+				const products = [];
+				for (let i = 0; i < data.storeItems.length; i++) {
+					try {
+						let res = await fetch(
+							config.productsHost +
+								"/product/" +
+								data.storeItems[i].productId
+						);
+						products.push(await res.json());
+					} catch (error) {
+						console.log(error);
+					}
+				}
+				setProduct(products);
+			})
+			.catch((err) => {
+				console.log(err);
+			});
+	}, []);
 
 	return (
 		<div className="Order__home">
