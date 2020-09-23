@@ -11,6 +11,9 @@ export default function Order() {
 	const [clickedItem, setclickedItem] = useState("Quick Bites");
 	const [store, setStore] = useState([]);
 	const [product, setProduct] = useState([]);
+
+	const subCatName = [];
+
 	const listItems = [
 		{
 			name: "Quick Bites",
@@ -86,12 +89,19 @@ export default function Order() {
 								"/product/" +
 								data.storeItems[i].productId
 						);
-						products.push(await res.json());
+						products.push({
+							...(await res.json()),
+							price: data.storeItems[i].price.$numberDecimal,
+							quantity: data.storeItems[i].quantity,
+						});
 					} catch (error) {
 						console.log(error);
 					}
 				}
 				setProduct(products);
+				console.log(products);
+				if(products.length > 0)
+					setclickedItem(products[0].subCategoryName);
 			})
 			.catch((err) => {
 				console.log(err);
@@ -101,34 +111,39 @@ export default function Order() {
 	return (
 		<div className="Order__home">
 			<div className="Order__categories">
-				{listItems.map((item) => (
+				{[
+					...new Set(
+						product.map((product) => product.subCategoryName)
+					),
+				].map((subCategoryName) => (
 					<div
-						onClick={() => setclickedItem(item.name)}
+						onClick={() => setclickedItem(subCategoryName)}
 						className={
-							clickedItem === item.name
+							clickedItem === subCategoryName
 								? "Order__category Order__category-selected"
 								: "Order__category"
 						}
 					>
-						{item.name}
+						{subCategoryName}
 					</div>
 				))}
 			</div>
 			<div className="Order__items">
 				<div className="Order__item__category">{clickedItem}</div>
-				{listItems
-					.find((item) => item.name === clickedItem)
-					.items.map((item) => (
+				{product
+					.filter((item) => item.subCategoryName === clickedItem)	
+					.map((item) => (
 						<div className="Order__item__details">
 							<div className="Order__item__line">
 								<div className="Order__item__line_left">
-									<div className="Order__item__type">
+									{item.type ? <div className="Order__item__type">
 										{item.type === "V" ? (
 											<img src="/Images/Veg.svg" />
 										) : (
 											<img src="/Images/NonVeg.svg" />
 										)}
-									</div>
+									</div> : null}
+									
 									<div className="Order__item__name">
 										{item.name}
 									</div>
