@@ -29,13 +29,14 @@ export default function Store(props) {
 		})
 	},[]);
 
-	function handleStoreClick(name) {
+	function handleStoreClick(name,id) {
 		navList.push(card);
 		history.push({
 			pathname: `/Order/${name.trim().toLowerCase().replace(" ", "-")}`,
 			state: {
 				navList,
 				name,
+				id,
 			},
 		});
 	}
@@ -65,6 +66,7 @@ export default function Store(props) {
 						stores == null ? <div>Loading...</div> : stores.map((store) => (
 							<StoreCard
 								name={store.name}
+								id={store._id}
 								type={store.categoryName}
 								distance={store.distance}
 								time={store.time}
