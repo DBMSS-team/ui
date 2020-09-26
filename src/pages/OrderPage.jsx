@@ -14,6 +14,7 @@ export default function OrderPage(props) {
 	const [store, setStore] = useState([]);
 	const [products, setProduct] = useState([]);
 	const [searchTerm,setSearchTerm] = useState("");
+	const [productList, setProductList] = useState([]);
 	useEffect(() => {
 		fetch(config.storesHost + "/store/" + id)
 			.then((store) => {
@@ -39,6 +40,7 @@ export default function OrderPage(props) {
 					}
 				}
 				setProduct(products);
+				setProductList(products);
 				if(products.length > 0)
 					setclickedItem(products[0].subCategoryName);
 			})
@@ -75,7 +77,7 @@ export default function OrderPage(props) {
 				</div>
 
 				<div className="OrderPage__content">
-					<Order className="order" products={products} clickedItem ={clickedItem}  setclickedItem={setclickedItem} />
+					<Order className="order" products={products} clickedItem ={clickedItem}  setclickedItem={setclickedItem} setProducts={setProduct} />
 					<Cart className="cart" />
 				</div>
 			</div>

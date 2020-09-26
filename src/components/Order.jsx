@@ -4,10 +4,19 @@ import AddIcon from "@material-ui/icons/Add";
 import RemoveIcon from "@material-ui/icons/Remove";
 import IconButton from "@material-ui/core/IconButton";
 
+import { createMuiTheme, ThemeProvider } from "@material-ui/core";
+import { green } from "@material-ui/core/colors";
 
 import "../styles/Order.css";
 
-export default function Order({setclickedItem, products, clickedItem}) {
+const theme = createMuiTheme({
+	palette: {
+		primary: green,
+	},
+});
+
+
+export default function Order({setclickedItem, products, clickedItem,setProducts}) {
 
 	return (
 		<div className="Order__home">
@@ -54,20 +63,38 @@ export default function Order({setclickedItem, products, clickedItem}) {
 									<IconButton
 										aria-label="delete"
 										color="white"
-										class="removebutton"
-										onClick={() => {}}
+										onClick={() => {
+											setProducts(() => {
+												return products.map((i) => {
+													if (i.id === item.id
+														&& i.quantity > 0)
+														i.quantity--;
+													return i;
+												});
+											});
+										}}
 									>
 										<RemoveIcon />
 									</IconButton>
 									{item.quantity}
-									<IconButton
-										aria-label="add"
+									<ThemeProvider theme={theme}>
+									<IconButton									
 										color="primary"
-										class="addbutton"
-										onClick={() => {}}
+										aria-label="add"
+										variant="contained"
+										onClick={() => {
+											setProducts(()=>{
+											return products.map((i)=>{
+											if(i.id == item.id)
+												i.quantity++;
+												return i;
+											});	
+										});
+									}}
 									>
 										<AddIcon />
 									</IconButton>
+									</ThemeProvider>
 								</div>
 							</div>
 							<div className="Order__item__price">
