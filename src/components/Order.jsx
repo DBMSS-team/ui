@@ -16,7 +16,7 @@ const theme = createMuiTheme({
 });
 
 
-export default function Order({setclickedItem, products, clickedItem}) {
+export default function Order({setclickedItem, products, clickedItem,setProducts}) {
 
 	return (
 		<div className="Order__home">
@@ -63,16 +63,34 @@ export default function Order({setclickedItem, products, clickedItem}) {
 									<IconButton
 										aria-label="delete"
 										color="white"
-										onClick={() => {}}
+										onClick={() => {
+											setProducts(() => {
+												return products.map((i) => {
+													if (i.id === item.id
+														&& i.quantity > 0)
+														i.quantity--;
+													return i;
+												});
+											});
+										}}
 									>
 										<RemoveIcon />
 									</IconButton>
 									{item.quantity}
 									<ThemeProvider theme={theme}>
-									<IconButton
-										aria-label="add"
+									<IconButton									
 										color="primary"
-										onClick={() => {}}
+										aria-label="add"
+										variant="contained"
+										onClick={() => {
+											setProducts(()=>{
+											return products.map((i)=>{
+											if(i.id == item.id)
+												i.quantity++;
+												return i;
+											});	
+										});
+									}}
 									>
 										<AddIcon />
 									</IconButton>
