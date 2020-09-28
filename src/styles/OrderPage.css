@@ -25,6 +25,7 @@
 	width: 100%;
 	max-width: 1024px;
 	display: flex;
+	flex-direction: column;
 	justify-content: flex-start;
 	box-shadow: 0px -1px 8px #c1c1c1;
 	border: 1px solid #e7e8eb;
@@ -40,7 +41,7 @@
 	max-width: 400px;
 	border: 1px solid #e7e8eb;
 	border-radius: 10px;
-	margin: 10px 0px;
+	margin: 10px 0px 0px 0px;
 	margin-left: 135px;
 }
 
@@ -54,4 +55,24 @@
 
 .search__bar svg {
 	margin-left: 10px;
+}
+
+.auto__complete {
+	z-index: 1000;
+	position: absolute;
+	top: 165px;
+	width: 50%;
+	background-color: #ffffff;
+	padding: 10px;
+	max-width: 400px;
+	border: 1px solid #e7e8eb;
+	margin-left: 135px;
+
+}
+.auto__complete__hidden {
+	display: none;
+}
+.auto__complete__content {
+	padding: 10px;
+
 }

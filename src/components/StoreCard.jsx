@@ -3,6 +3,7 @@ import "../styles/StoreCard.css";
 
 export default function StoreCard({
 	name,
+	id,
 	type,
 	distance,
 	location,
@@ -10,7 +11,7 @@ export default function StoreCard({
 	handleStoreClick,
 }) {
 	return (
-		<div className="storecard" onClick={() => handleStoreClick(name)}>
+		<div className="storecard" onClick={() => handleStoreClick(name,id)}>
 			<div className="storecard__left">
 				<img
 					src="/assets/images/empire.png"
