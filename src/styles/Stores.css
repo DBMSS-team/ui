@@ -17,11 +17,10 @@
 }
 
 .Stores__list {
-	display: flex;
-	justify-content: space-between;
-	align-content: center;
+	display: grid;
 	width: 100%;
-	flex-wrap: wrap;
+	grid-template-columns: 1fr 1fr;
+	column-gap: 200px;
 }
 
 .Stores__count {
