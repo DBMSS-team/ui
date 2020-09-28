@@ -15,6 +15,8 @@ export default function OrderPage(props) {
 	const [products, setProduct] = useState([]);
 	const [searchTerm,setSearchTerm] = useState("");
 	const [productList, setProductList] = useState([]);
+	const [selectedItem, setSelectedItem] = useState(null);
+
 	useEffect(() => {
 		fetch(config.storesHost + "/store/" + id)
 			.then((store) => {
@@ -53,6 +55,11 @@ export default function OrderPage(props) {
 		setSearchTerm(event.target.value)
 	}
 
+	function handleItemSelect(event) {
+		const value = event.target.value;
+		setSelectedItem(value);
+	}
+
 	let filteredProducts = searchTerm.length > 0 ? products.filter((product)=>product.name.toLowerCase().includes(searchTerm.toLowerCase())) : [];
 
 	return (
@@ -73,11 +80,11 @@ export default function OrderPage(props) {
 
 						<input type="text" placeholder="search for an item" onChange={handleChange}/>
 					</div>		
-					<div className={filteredProducts.length > 0 ? "auto__complete" : "auto__complete__hidden"}>{ searchTerm.length > 0 ? filteredProducts.map((product)=><div className="auto__complete__content"> {product.name}</div>) : null }</div>
+					<div className={filteredProducts.length > 0 ? "auto__complete" : "auto__complete__hidden"}>{ searchTerm.length > 0 ? filteredProducts.map((product)=><div onClick={() => handleItemSelect(product.subCategoryName)} className="auto__complete__content"> {product.name}</div>) : null }</div>
 				</div>
 
 				<div className="OrderPage__content">
-					<Order className="order" products={products} clickedItem ={clickedItem}  setclickedItem={setclickedItem} setProducts={setProduct} />
+					<Order className="order" selectedItem={selectedItem} products={products} clickedItem ={clickedItem}  setclickedItem={setclickedItem} setProducts={setProduct} />
 					<Cart className="cart" />
 				</div>
 			</div>

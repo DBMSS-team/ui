@@ -16,12 +16,21 @@ const theme = createMuiTheme({
 });
 
 
-export default function Order({setclickedItem, products, clickedItem,setProducts}) {
+export default function Order({
+	selectedItem,
+	setclickedItem,
+	products,
+	clickedItem,
+	setProducts,
+}) {
+
+	const searchResults  = selectedItem ? ["Search Results"] : []; 
 
 	return (
 		<div className="Order__home">
 			<div className="Order__categories">
 				{[
+					...searchResults,
 					...new Set(
 						products.map((product) => product.subCategoryName)
 					),
@@ -41,19 +50,23 @@ export default function Order({setclickedItem, products, clickedItem,setProducts
 			<div className="Order__items">
 				<div className="Order__item__category">{clickedItem}</div>
 				{products
-					.filter((item) => item.subCategoryName === clickedItem)	
+					.filter((item) => {
+						return item.subCategoryName === clickedItem
+					})
 					.map((item) => (
 						<div className="Order__item__details">
 							<div className="Order__item__line">
 								<div className="Order__item__line_left">
-									{item.type ? <div className="Order__item__type">
-										{item.type === "V" ? (
-											<img src="/Images/Veg.svg" />
-										) : (
-											<img src="/Images/NonVeg.svg" />
-										)}
-									</div> : null}
-									
+									{item.type ? (
+										<div className="Order__item__type">
+											{item.type === "V" ? (
+												<img src="/Images/Veg.svg" />
+											) : (
+												<img src="/Images/NonVeg.svg" />
+											)}
+										</div>
+									) : null}
+
 									<div className="Order__item__name">
 										{item.name}
 									</div>
@@ -66,8 +79,10 @@ export default function Order({setclickedItem, products, clickedItem,setProducts
 										onClick={() => {
 											setProducts(() => {
 												return products.map((i) => {
-													if (i.id === item.id
-														&& i.quantity > 0)
+													if (
+														i.id === item.id &&
+														i.quantity > 0
+													)
 														i.quantity--;
 													return i;
 												});
@@ -78,22 +93,22 @@ export default function Order({setclickedItem, products, clickedItem,setProducts
 									</IconButton>
 									{item.quantity}
 									<ThemeProvider theme={theme}>
-									<IconButton									
-										color="primary"
-										aria-label="add"
-										variant="contained"
-										onClick={() => {
-											setProducts(()=>{
-											return products.map((i)=>{
-											if(i.id == item.id)
-												i.quantity++;
-												return i;
-											});	
-										});
-									}}
-									>
-										<AddIcon />
-									</IconButton>
+										<IconButton
+											color="primary"
+											aria-label="add"
+											variant="contained"
+											onClick={() => {
+												setProducts(() => {
+													return products.map((i) => {
+														if (i.id == item.id)
+															i.quantity++;
+														return i;
+													});
+												});
+											}}
+										>
+											<AddIcon />
+										</IconButton>
 									</ThemeProvider>
 								</div>
 							</div>
