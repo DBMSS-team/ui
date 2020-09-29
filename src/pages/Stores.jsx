@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
 import Navbar from "../components/Navbar";
@@ -13,15 +13,18 @@ export default function Store(props) {
 	const { navList, card } = props.location.state;
 	const history = useHistory();
 	const [stores, setStores] = useState(null);
+	const ref = useRef(null);
 
 	useEffect(() => {
+		ref.current.scrollIntoView();
 		fetch(config.storesHost + "/store")
 		.then(stores => {
 			console.log(stores);
 			return stores.json() 
 		})
 		.then((data) => {
-			setStores(data);
+			console.log(card);
+			setStores(data.filter((store)=> { return store.categoryName === card }));
 			console.log(data);
 		})
 		.catch(err => {
@@ -42,7 +45,7 @@ export default function Store(props) {
 	}
 
 	return (
-		<div className="Stores">
+		<div className="Stores" ref={ref}>
 			<Header />
 			<Navbar navList={[...navList, card]} />
 			<div className="Stores__content">

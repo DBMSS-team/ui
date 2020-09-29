@@ -16,8 +16,10 @@ export default function OrderPage(props) {
 	const [searchTerm,setSearchTerm] = useState("");
 	const [productList, setProductList] = useState([]);
 	const [selectedItem, setSelectedItem] = useState(null);
+	const ref = useRef(null);
 
 	useEffect(() => {
+		ref.current.scrollIntoView();
 		fetch(config.storesHost + "/store/" + id)
 			.then((store) => {
 				return store.json();
@@ -25,6 +27,7 @@ export default function OrderPage(props) {
 			.then(async (data) => {
 				setStore(data);
 				const products = [];
+				const temp = [];
 				for (let i = 0; i < data.storeItems.length; i++) {
 					try {
 						let res = await fetch(
@@ -41,7 +44,7 @@ export default function OrderPage(props) {
 						console.log(error);
 					}
 				}
-				setProduct(products);
+				setProduct([...products,...products,...products,...products,...products,...products,...products,...products,...products,...products,...products,...products,...products,...products,...products,{"_id":"5f674040c0399cdb91cd0772","name":"Crispy Corn","subCategoryName":"Kitten Food","categoryName":"Food Delivery","createdAt":"2020-09-20T11:43:09.699Z","updatedAt":"2020-09-20T11:43:09.699Z","__v":0}]);
 				setProductList(products);
 				if(products.length > 0)
 					setclickedItem(products[0].subCategoryName);
@@ -55,15 +58,16 @@ export default function OrderPage(props) {
 		setSearchTerm(event.target.value)
 	}
 
-	function handleItemSelect(event) {
-		const value = event.target.value;
-		setSelectedItem(value);
+	function handleItemSelect(value) {
+		setclickedItem(value);
+		setSearchTerm('');
+
 	}
 
 	let filteredProducts = searchTerm.length > 0 ? products.filter((product)=>product.name.toLowerCase().includes(searchTerm.toLowerCase())) : [];
 
 	return (
-		<div className="OrderPage">
+		<div className="OrderPage" ref={ref}>
 			<Header />
 			<Navbar navList={[...navList, name]} />
 			<div className="OrderPage__home">

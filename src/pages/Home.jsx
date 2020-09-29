@@ -26,7 +26,7 @@ export default function Home(props) {
 	const navList = location ? ["Home", location] : ["Home"];
 	const [noLocationClick, setNoLocationClick] = useState(false);
 	const [cards, setCards] = useState([]);
-
+	const ref = useRef(null);
 	//let noLocationClick = location ? false : true;
 
 
@@ -43,10 +43,14 @@ export default function Home(props) {
 			})
 		},[]);
 
+		useEffect(() => {
+			ref.current.scrollIntoView();
+		}, [navList])
+
 	const info =
 		"Why step out when you can get everything delivered home with the tap of a button? New Delhi's favourite delivery app gets you Food, Grocery, Medicine, Pet Supplies, Fruits & Vegetables, Meat & Fish, Health & Wellness, Gifts and Send Packages from one end of the city to the other. From your local kirana stores to your favourite brands, grocery shopping to your forgotten charger, we are always on the move for you. Why worry about your chores, when you can get it all Dun!";
 
-	const ref = useRef(null);
+	
 
 	return (
 		<div className="home__page" ref={ref}>
@@ -67,6 +71,7 @@ export default function Home(props) {
 						</div>
 						<LocAutoComp
 							handleClick={() => {
+								
 								setNoLocationClick(false);
 							}}
 						/>
