@@ -22,6 +22,7 @@ export default function Order({
 	products,
 	clickedItem,
 	setProducts,
+	checkAndSet,
 }) {
 
 	const searchResults  = selectedItem ? ["Search Results"] : []; 
@@ -80,10 +81,12 @@ export default function Order({
 											setProducts(() => {
 												return products.map((i) => {
 													if (
-														i.id === item.id &&
+														i._id === item._id &&
 														i.quantity > 0
-													)
+													) {
 														i.quantity--;
+														checkAndSet(item,false);
+													}
 													return i;
 												});
 											});
@@ -100,8 +103,10 @@ export default function Order({
 											onClick={() => {
 												setProducts(() => {
 													return products.map((i) => {
-														if (i.id == item.id)
+														if (i._id == item._id) {
 															i.quantity++;
+															checkAndSet(item,true);
+														}
 														return i;
 													});
 												});

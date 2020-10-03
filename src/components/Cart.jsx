@@ -14,23 +14,23 @@ const theme = createMuiTheme({
 	},
 });
 
-const cartItems = [
-	{
-		id: 1,
-		name: "Chicken Shawarma",
-		price: "100/-",
-		quantity: "2",
-		type: "N",
-	},
-	{
-		id: 2,
-		name: "Veg Roll",
-		price: "200/-",
-		quantity: "1",
-		type: "V",
-	},
-];
-export default function Cart() {
+// const cartItems = [
+// 	{
+// 		id: 1,
+// 		name: "Chicken Shawarma",
+// 		price: "100/-",
+// 		quantity: "2",
+// 		type: "N",
+// 	},
+// 	{
+// 		id: 2,
+// 		name: "Veg Roll",
+// 		price: "200/-",
+// 		quantity: "1",
+// 		type: "V",
+// 	},
+// ];
+export default function Cart({cartItems}) {
 	const history = useHistory();
 	const [items, setItems] = useState(cartItems);
 
@@ -62,7 +62,7 @@ export default function Cart() {
 											setItems(() => {
 												return items.map((i) => {
 													if (
-														i.id === item.id &&
+														i._id === item._id &&
 														i.quantity > 0
 													)
 														i.quantity--;
@@ -82,7 +82,7 @@ export default function Cart() {
 											onClick={() => {
 												setItems(() => {
 													return items.map((i) => {
-														if (i.id === item.id)
+														if (i._id === item._id)
 															i.quantity++;
 														return i;
 													});

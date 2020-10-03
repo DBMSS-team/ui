@@ -16,6 +16,7 @@ export default function OrderPage(props) {
 	const [searchTerm,setSearchTerm] = useState("");
 	const [productList, setProductList] = useState([]);
 	const [selectedItem, setSelectedItem] = useState(null);
+	const [cartItems, setCartItems] = useState([]);
 	const ref = useRef(null);
 
 	useEffect(() => {
@@ -44,7 +45,7 @@ export default function OrderPage(props) {
 						console.log(error);
 					}
 				}
-				setProduct([...products,...products,...products,...products,...products,...products,...products,...products,...products,...products,...products,...products,...products,...products,...products,{"_id":"5f674040c0399cdb91cd0772","name":"Crispy Corn","subCategoryName":"Kitten Food","categoryName":"Food Delivery","createdAt":"2020-09-20T11:43:09.699Z","updatedAt":"2020-09-20T11:43:09.699Z","__v":0}]);
+				setProduct(products);//[...products,...products,...products,...products,...products,...products,...products,...products,...products,...products,...products,...products,...products,...products,...products,{"_id":"5f674040c0399cdb91cd0772","name":"Crispy Corn","subCategoryName":"Kitten Food","categoryName":"Food Delivery","createdAt":"2020-09-20T11:43:09.699Z","updatedAt":"2020-09-20T11:43:09.699Z","__v":0}]);
 				setProductList(products);
 				if(products.length > 0)
 					setclickedItem(products[0].subCategoryName);
@@ -62,6 +63,32 @@ export default function OrderPage(props) {
 		setclickedItem(value);
 		setSearchTerm('');
 
+	}
+
+	function checkAndSet(item,addition) {
+		const foundItem = cartItems.find((cartItem) => cartItem._id === item._id );
+		
+		if( foundItem ) {
+			addition ? foundItem.quantity++: foundItem.quantity--;
+			if(foundItem.quantity === 0) {
+				const updatedItems = cartItems.map((cartItem)=> cartItem._id === foundItem._id ? {} : {...cartItem});
+			setCartItems(updatedItems)
+
+			}else {
+				const updatedItems = cartItems.map((cartItem)=> cartItem._id === foundItem._id ? foundItem : {...cartItem});
+			setCartItems(updatedItems)
+			}
+			
+		}else {
+			setCartItems([{
+				_id: item._id,
+				name: item.name,
+				price: item.price,
+				quantity: item.quantity,
+				type: "N",
+			}, ...cartItems])
+		}
+		
 	}
 
 	let filteredProducts = searchTerm.length > 0 ? products.filter((product)=>product.name.toLowerCase().includes(searchTerm.toLowerCase())) : [];
@@ -88,8 +115,8 @@ export default function OrderPage(props) {
 				</div>
 
 				<div className="OrderPage__content">
-					<Order className="order" selectedItem={selectedItem} products={products} clickedItem ={clickedItem}  setclickedItem={setclickedItem} setProducts={setProduct} />
-					<Cart className="cart" />
+					<Order className="order" selectedItem={selectedItem} products={products} clickedItem ={clickedItem}  setclickedItem={setclickedItem} setProducts={setProduct} checkAndSet={checkAndSet} />
+					<Cart className="cart" cartItems={cartItems}/>
 				</div>
 			</div>
 		</div> 
