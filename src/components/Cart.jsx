@@ -1,4 +1,4 @@
-import React, { useState, Fragment } from "react";
+import React, { useState, Fragment, useEffect } from "react";
 import "../styles/Cart.css";
 import AddIcon from "@material-ui/icons/Add";
 import RemoveIcon from "@material-ui/icons/Remove";
@@ -30,18 +30,22 @@ const theme = createMuiTheme({
 // 		type: "V",
 // 	},
 // ];
-export default function Cart({cartItems}) {
+export default function Cart({ cartItems, checkAndUpdateProduct }) {
 	const history = useHistory();
 	const [items, setItems] = useState(cartItems);
+
+	useEffect(() => {
+		setItems(cartItems.map((cartItem) => cartItem))
+	}, [cartItems])
 
 	return (
 		<div className="cart">
 			<div class="cart-title">
 				<h2>Your Cart</h2>
-				<h2 class="items">(2 Items)</h2>
+				<h2 class="items">({items.length} Items)</h2>
 			</div>
 			<div class="cart-items">
-				{cartItems.map((item, idx) => {
+				{items.map((item, idx) => {
 					return (
 						<div>
 							<div class="cart-item">
@@ -49,8 +53,8 @@ export default function Cart({cartItems}) {
 									{item.type === "V" ? (
 										<img src="/Images/Veg.svg" />
 									) : (
-										<img src="/Images/NonVeg.svg" />
-									)}
+											<img src="/Images/NonVeg.svg" />
+										)}
 								</div>
 								<div class="cart-item-name">{item.name}</div>
 								<div class="quantity">
@@ -64,8 +68,10 @@ export default function Cart({cartItems}) {
 													if (
 														i._id === item._id &&
 														i.quantity > 0
-													)
-														i.quantity--;
+													) {
+														// i.quantity--;
+														checkAndUpdateProduct(item, false);
+													}
 													return i;
 												});
 											});
@@ -82,8 +88,10 @@ export default function Cart({cartItems}) {
 											onClick={() => {
 												setItems(() => {
 													return items.map((i) => {
-														if (i._id === item._id)
-															i.quantity++;
+														if (i._id === item._id) {
+															// i.quantity++;
+															checkAndUpdateProduct(item, true);
+														}
 														return i;
 													});
 												});
@@ -94,7 +102,7 @@ export default function Cart({cartItems}) {
 									</ThemeProvider>
 								</div>
 								<div class="cart-item-price">
-									{"₹" + item.price}
+									{"₹" + item.price * item.quantity}
 								</div>
 							</div>
 						</div>
@@ -104,7 +112,11 @@ export default function Cart({cartItems}) {
 			</div>
 			<div class="cart-item">
 				<div class="cart-item-name-bold">Item Total</div>
-				<div class="cart-item-price">₹175/-</div>
+				<div class="cart-item-price">{
+					items.reduce((totalPrice, item) => {
+						return totalPrice + item.price * item.quantity
+					}, 0)
+				}/-</div>
 			</div>
 			<div>
 				<ThemeProvider theme={theme}>

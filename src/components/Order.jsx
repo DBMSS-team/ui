@@ -22,10 +22,10 @@ export default function Order({
 	products,
 	clickedItem,
 	setProducts,
-	checkAndSet,
+	checkAndSetCart,
 }) {
 
-	const searchResults  = selectedItem ? ["Search Results"] : []; 
+	const searchResults = selectedItem ? ["Search Results"] : [];
 
 	return (
 		<div className="Order__home">
@@ -63,8 +63,8 @@ export default function Order({
 											{item.type === "V" ? (
 												<img src="/Images/Veg.svg" />
 											) : (
-												<img src="/Images/NonVeg.svg" />
-											)}
+													<img src="/Images/NonVeg.svg" />
+												)}
 										</div>
 									) : null}
 
@@ -85,7 +85,7 @@ export default function Order({
 														i.quantity > 0
 													) {
 														i.quantity--;
-														checkAndSet(item,false);
+														checkAndSetCart(item, false);
 													}
 													return i;
 												});
@@ -103,9 +103,10 @@ export default function Order({
 											onClick={() => {
 												setProducts(() => {
 													return products.map((i) => {
-														if (i._id == item._id) {
+														if (i._id == item._id &&
+															i.quantity < item.totalQuantity) {
 															i.quantity++;
-															checkAndSet(item,true);
+															checkAndSetCart(item, true);
 														}
 														return i;
 													});
