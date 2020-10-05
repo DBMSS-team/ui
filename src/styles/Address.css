@@ -1,16 +1,19 @@
+.Address {
+}
 .Address__content * {
-    margin: 0px;
-    padding: 0px;
+	margin: 0px;
+	padding: 0px;
 }
 
 .Address__content {
 	display: flex;
-    padding: 16px;
-    max-width: 360px;
+	padding: 16px;
+	max-width: 300px;
 	border: 1px solid #e7e8eb;
 	border-radius: 2px;
-    margin: 20px;
-    justify-content: space-between;
+	margin: 20px;
+	box-sizing: border-box;
+	justify-content: space-between;
 }
 
 .Address__content svg {
@@ -29,10 +32,10 @@
 
 .Address__type {
 	margin-bottom: 4px;
-    color: #0f1938;
-    font-weight: 600;
-    letter-spacing: normal;
-    font-size: 14px;
+	color: #0f1938;
+	font-weight: 600;
+	letter-spacing: normal;
+	font-size: 14px;
 }
 
 .Address__text {

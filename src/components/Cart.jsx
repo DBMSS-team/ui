@@ -53,8 +53,8 @@ export default function Cart({ cartItems, checkAndUpdateProduct }) {
 									{item.type === "V" ? (
 										<img src="/Images/Veg.svg" />
 									) : (
-											<img src="/Images/NonVeg.svg" />
-										)}
+										<img src="/Images/NonVeg.svg" />
+									)}
 								</div>
 								<div class="cart-item-name">{item.name}</div>
 								<div class="quantity">
@@ -70,7 +70,10 @@ export default function Cart({ cartItems, checkAndUpdateProduct }) {
 														i.quantity > 0
 													) {
 														// i.quantity--;
-														checkAndUpdateProduct(item, false);
+														checkAndUpdateProduct(
+															item,
+															false
+														);
 													}
 													return i;
 												});
@@ -88,9 +91,14 @@ export default function Cart({ cartItems, checkAndUpdateProduct }) {
 											onClick={() => {
 												setItems(() => {
 													return items.map((i) => {
-														if (i._id === item._id) {
+														if (
+															i._id === item._id
+														) {
 															// i.quantity++;
-															checkAndUpdateProduct(item, true);
+															checkAndUpdateProduct(
+																item,
+																true
+															);
 														}
 														return i;
 													});
@@ -102,7 +110,8 @@ export default function Cart({ cartItems, checkAndUpdateProduct }) {
 									</ThemeProvider>
 								</div>
 								<div class="cart-item-price">
-									{"₹" + item.price * item.quantity}
+									{"₹" +
+										(item.price * item.quantity).toFixed(2)}
 								</div>
 							</div>
 						</div>
@@ -111,14 +120,17 @@ export default function Cart({ cartItems, checkAndUpdateProduct }) {
 				<hr className="cart-hr"></hr>
 			</div>
 			<div class="cart-item">
-				<div class="cart-item-name-bold">Item Total</div>
-				<div class="cart-item-price">{
-					items.reduce((totalPrice, item) => {
-						return totalPrice + item.price * item.quantity
-					}, 0)
-				}/-</div>
+				<div class="cart-item-name-bold" hidden={items.length === 0}>
+					Item Total
+				</div>
+				<div class="cart-item-price" hidden={items.length === 0}>
+					{items.reduce((totalPrice, item) => {
+						return totalPrice + item.price * item.quantity;
+					}, 0)}
+					/-
+				</div>
 			</div>
-			<div>
+			<div hidden={items.length === 0}>
 				<ThemeProvider theme={theme}>
 					<Button
 						class="button-checkout"
@@ -126,13 +138,14 @@ export default function Cart({ cartItems, checkAndUpdateProduct }) {
 						color="primary"
 						size="lg"
 						disableRipple
-						onClick={() => console.log("add payment")}
+						onClick={() => {
+							history.push("/payment")
+						}}
 					>
 						Proceed to Checkout
 					</Button>
 				</ThemeProvider>
 			</div>
 		</div>
-		//</MuiThemeProvider>
 	);
 }

@@ -1,0 +1,32 @@
+.PaymentPage {
+	background-color: #f0f5f7;
+	height: 100vh;
+}
+.PaymentPage__content {
+	display: flex;
+	justify-content: center;
+	background-color: #f0f5f7;
+}
+
+.PaymentPage__body {
+	display: flex;
+	justify-content: space-between;
+	max-width: 1024px;
+	width: 100%;
+	margin-top: 50px;
+}
+
+.PaymentPage__left {
+	background-color: white;
+	display: flex;
+	width: 700px;
+	flex-wrap: wrap;
+}
+.PaymentPage__right {
+	background-color: white;
+	width: 300px;
+}
+
+.cart {
+	width: 100%;
+}

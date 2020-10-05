@@ -16,6 +16,7 @@ import Stores from "./pages/Stores";
 import NoDelivery from "./pages/NoDelivery";
 import OrderPage from "./pages/OrderPage";
 import LocAutoComp from "./components/LocAutoComp";
+import PaymentPage from "./pages/PaymentPage";
 
 function App() {
 	const [loggedIn, setLoggedIn] = useState(false);
@@ -59,6 +60,7 @@ function App() {
 					<Route path="/Cart" component={Cart} />
 					<Route path="/no-delivery" component={NoDelivery} />
 					<Route path="/Stores/:type" component={Stores} />
+					<Route path="/payment" component={PaymentPage} />
 					<Route path="/:location" component={Home} />
 					<Route
 						path="/Stores/:type"
