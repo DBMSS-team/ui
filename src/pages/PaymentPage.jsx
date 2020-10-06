@@ -7,7 +7,8 @@ import Header from '../components/Header'
 
 import '../styles/PaymentPage.css'
 
-export default function PaymentPage() {
+export default function PaymentPage(props) {
+		const cartItems = props.location.state.items;
 	return (
 		<div className="PaymentPage">
 			<Header />
@@ -19,7 +20,7 @@ export default function PaymentPage() {
 						<Address />
 					</div>
 					<div className="PaymentPage__right">
-						<Cart cartItems={[]}/>
+						<Cart cartItems={cartItems}/>
 					</div>
 				</div>
 			</div>

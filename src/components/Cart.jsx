@@ -41,21 +41,23 @@ export default function Cart({ cartItems, checkAndUpdateProduct }) {
 	return (
 		<div className="cart">
 			<div class="cart-title">
-				<h2>Your Cart</h2>
+				<h2>Your Cart</h2> 
+				&nbsp;&nbsp;
 				<h2 class="items">({items.length} Items)</h2>
+
 			</div>
 			<div class="cart-items">
 				{items.map((item, idx) => {
 					return (
 						<div>
 							<div class="cart-item">
-								<div>
+								{/* <div>
 									{item.type === "V" ? (
 										<img src="/Images/Veg.svg" />
 									) : (
 										<img src="/Images/NonVeg.svg" />
 									)}
-								</div>
+								</div> */}
 								<div class="cart-item-name">{item.name}</div>
 								<div class="quantity">
 									<IconButton
@@ -69,11 +71,8 @@ export default function Cart({ cartItems, checkAndUpdateProduct }) {
 														i._id === item._id &&
 														i.quantity > 0
 													) {
-														// i.quantity--;
-														checkAndUpdateProduct(
-															item,
-															false
-														);
+														if (checkAndUpdateProduct) checkAndUpdateProduct(item,false);
+															else i.quantity--;
 													}
 													return i;
 												});
@@ -94,11 +93,9 @@ export default function Cart({ cartItems, checkAndUpdateProduct }) {
 														if (
 															i._id === item._id
 														) {
-															// i.quantity++;
-															checkAndUpdateProduct(
-																item,
-																true
-															);
+															if (checkAndUpdateProduct) checkAndUpdateProduct(item,true);
+															else i.quantity++;
+															
 														}
 														return i;
 													});
@@ -124,7 +121,7 @@ export default function Cart({ cartItems, checkAndUpdateProduct }) {
 					Item Total
 				</div>
 				<div class="cart-item-price" hidden={items.length === 0}>
-					{items.reduce((totalPrice, item) => {
+					{"₹" + items.reduce((totalPrice, item) => {
 						return totalPrice + item.price * item.quantity;
 					}, 0)}
 					/-
@@ -139,7 +136,10 @@ export default function Cart({ cartItems, checkAndUpdateProduct }) {
 						size="lg"
 						disableRipple
 						onClick={() => {
-							history.push("/payment")
+							history.push({
+								pathname:"/payment",
+								state:{items},
+							})
 						}}
 					>
 						Proceed to Checkout

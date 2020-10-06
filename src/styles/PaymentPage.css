@@ -19,14 +19,12 @@
 .PaymentPage__left {
 	background-color: white;
 	display: flex;
-	width: 700px;
+	width: 650px;
 	flex-wrap: wrap;
 }
 .PaymentPage__right {
 	background-color: white;
-	width: 300px;
+	width: 360px;
+
 }
 
-.cart {
-	width: 100%;
-}

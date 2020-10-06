@@ -17,7 +17,9 @@
 .Order__home {
 }
 
-.cart {
+.orderpage__cart {
+	box-sizing: border-box;
+	width: 50%;
 	border-left: 1px solid #e7e8eb;
 }
 

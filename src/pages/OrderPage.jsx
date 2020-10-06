@@ -115,8 +115,8 @@ export default function OrderPage(props) {
 				</div>
 
 				<div className="OrderPage__content">
-					<Order className="order" selectedItem={selectedItem} products={products} clickedItem={clickedItem} setclickedItem={setclickedItem} setProducts={setProduct} checkAndSetCart={checkAndSetCart} />
-					<Cart className="cart" cartItems={cartItems} checkAndUpdateProduct={checkAndUpdateProduct} />
+					<Order selectedItem={selectedItem} products={products} clickedItem={clickedItem} setclickedItem={setclickedItem} setProducts={setProduct} checkAndSetCart={checkAndSetCart} />
+					<div className="orderpage__cart"><Cart cartItems={cartItems} checkAndUpdateProduct={checkAndUpdateProduct} /></div>
 				</div>
 			</div>
 		</div>
